@@ -9,10 +9,15 @@ public class Button : MonoBehaviour
     {
         SceneManager.LoadScene("Scenario");
     }
-    
+
     public void MainMenu_Exit()
     {
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+
     }
 
     public void MainMenu_OptionON()

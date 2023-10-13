@@ -31,22 +31,31 @@ public class PlayerController : MonoBehaviour
     private ParryAttack parryattack;
 
     public GameObject plyaerAttack_Prefab;
+
+    private PlayerHp playerHp;
+    private BossHP bossHp;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bulletspawn_test = GameObject.FindWithTag("boss").GetComponent<BulletSpawn_test>();
         parryattack = GameObject.FindWithTag("Player").transform.Find("Parry_Attack").GetComponent<ParryAttack>();
+        playerHp = GetComponent<PlayerHp>();
+        bossHp = GameObject.FindWithTag("boss").GetComponent<BossHP>();
     }
 
     void Update()
     {
         playerPosition = transform.position;
         dirPos = playerPosition - bulletspawn_test.enemyPosition;
-        print(dirPos);
-        Move();
-        Jump();
-        BackStep();
-        Parry();
+
+        if (!playerHp.isDead && bossHp.bossHP > 0 && !GameManager.instance.isPause)
+        {
+            Move();
+            Jump();
+            BackStep();
+            Parry();
+        }
     }
 
     //ÁÂ¿ìÀÌµ¿

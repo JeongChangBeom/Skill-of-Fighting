@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class GameManager : MonoBehaviour
 
     private Image parry;
     private Text parry_text;
+
+    private PlayerHp playerHp;
+    private BossHP bossHp;
+
+    private GameObject PauseText;
+    public bool isPause = false;
+   
 
     public static GameManager instance
     {
@@ -48,13 +56,59 @@ public class GameManager : MonoBehaviour
         parry = GameObject.Find("Canvas").transform.Find("Parry_Image").GetComponent<Image>();
         backStep_text = GameObject.Find("Canvas").transform.Find("BackStep_Image/BackStep_CoolDown").GetComponent<Text>();
         parry_text = GameObject.Find("Canvas").transform.Find("Parry_Image/Parry_CoolDown").GetComponent<Text>();
+        playerHp = GameObject.FindWithTag("Player").GetComponent<PlayerHp>();
+        bossHp = GameObject.FindWithTag("boss").GetComponent<BossHP>();
+        PauseText = GameObject.Find("Canvas").transform.Find("PauseText").gameObject;
+
+        Time.timeScale = 1;
+        playerHp.isDead = false;
     }
 
     void Update()
     {
-        BackStepCoolDown();
-        ParryCoolDown();
-        BossHpBar();
+        if(!playerHp.isDead && bossHp.bossHP > 0)
+        {
+            Pause();
+        }
+
+        if (!playerHp.isDead && bossHp.bossHP > 0 && !isPause)
+        {
+            BackStepCoolDown();
+            ParryCoolDown();
+            BossHpBar();
+        }
+        else
+        {
+            End();
+        }
+    }
+
+    private void Pause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPause)
+        {
+            isPause = true;
+            Time.timeScale = 0;
+            PauseText.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPause)
+        {
+            isPause = false;
+            Time.timeScale = 1;
+            PauseText.SetActive(false);
+        }
+    }
+
+    private void End()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     private void BackStepCoolDown()

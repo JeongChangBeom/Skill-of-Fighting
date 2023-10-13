@@ -12,9 +12,13 @@ public class Bullet_test : MonoBehaviour
 
     private ParryAttack parryAttack;
 
+    private PlayerHp playerHp;
+
     void Start()
     {
         parryAttack = GameObject.Find("Player").transform.Find("Parry_Attack").GetComponent<ParryAttack>();
+
+        playerHp = GameObject.Find("Player").GetComponent<PlayerHp>();
 
         targetPos = GameObject.Find("Player").transform.position;
         myPos = transform.position;
@@ -42,6 +46,7 @@ public class Bullet_test : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Player"))
         {
+            playerHp.Die();
             print("Damage");
             Destroy(this.gameObject);
         }
