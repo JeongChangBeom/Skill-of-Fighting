@@ -7,7 +7,8 @@ public class Button : MonoBehaviour
 {
     public void MainMenu_Start()
     {
-        SceneManager.LoadScene("Scenario");
+        //SceneManager.LoadScene("Scenario");
+        SceneManager.LoadScene("Test");
     }
 
     public void MainMenu_Exit()

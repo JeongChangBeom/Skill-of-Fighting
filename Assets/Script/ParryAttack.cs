@@ -22,12 +22,12 @@ public class ParryAttack : MonoBehaviour
     {
         if (parryattackOn && playercontroller.dirPos.x > 0)
         {
-            playercontroller.transform.localScale = new Vector3(-1f, 1f, 1f);
+            playercontroller.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
             ParryAttackLeft();
         }
         else if(parryattackOn && playercontroller.dirPos.x <= 0)
         {
-            playercontroller.transform.localScale = new Vector3(1f, 1f, 1f);
+            playercontroller.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             ParryAttackRight();
         }
     }

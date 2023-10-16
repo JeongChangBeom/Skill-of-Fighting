@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            End();
+            GameOver();
         }
     }
 
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void End()
+    private void GameOver()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bulletspawn_test = GameObject.FindWithTag("boss").GetComponent<BulletSpawn_test>();
+        bulletspawn_test = GameObject.Find("Enemy").GetComponent<BulletSpawn_test>();
         parryattack = GameObject.FindWithTag("Player").transform.Find("Parry_Attack").GetComponent<ParryAttack>();
         playerHp = GetComponent<PlayerHp>();
         bossHp = GameObject.FindWithTag("boss").GetComponent<BossHP>();
@@ -70,13 +70,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow) && moveOn && !parryattack.parryattackOn)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
             key = -1;
             dir = -1;
         }
         else if (Input.GetKey(KeyCode.RightArrow) && moveOn && !parryattack.parryattackOn)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             key = 1;
             dir = 1;
         }
