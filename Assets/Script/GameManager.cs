@@ -66,7 +66,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(!playerHp.isDead && bossHp.bossHP > 0)
+        BossHpBar();
+
+        if (!playerHp.isDead && bossHp.bossHP > 0)
         {
             Pause();
         }
@@ -75,7 +77,6 @@ public class GameManager : MonoBehaviour
         {
             BackStepCoolDown();
             ParryCoolDown();
-            BossHpBar();
         }
         else
         {
