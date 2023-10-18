@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonUp("Horizontal") && moveOn && !parryattack.parryattackOn)
         {
-            rb.velocity = new Vector2(rb.velocity.normalized.x * 0.5f, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.normalized.x * 0.1f, rb.velocity.y);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) && moveOn && !parryattack.parryattackOn)

@@ -440,7 +440,7 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   dirPos: {x: 0, y: 0, z: 0}
   isJump: 1
-  moveSpeed: 14
+  moveSpeed: 14.9
   MaxmoveSpeed: 15
   jumpPower: 15
   backstepPower: 100

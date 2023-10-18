@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale = 1;
+
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         bossHP = GameObject.FindWithTag("boss").GetComponent<BossHP>();
         hpBar = GameObject.Find("Canvas").transform.Find("BossHp").GetComponent<Slider>();
@@ -60,7 +62,6 @@ public class GameManager : MonoBehaviour
         bossHp = GameObject.FindWithTag("boss").GetComponent<BossHP>();
         PauseText = GameObject.Find("Canvas").transform.Find("PauseText").gameObject;
 
-        Time.timeScale = 1;
         playerHp.isDead = false;
     }
 

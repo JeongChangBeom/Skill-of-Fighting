@@ -15,14 +15,16 @@ public class FadeIn : MonoBehaviour
     public IEnumerator FadeInStart()
     {
         FadePannel.SetActive(true);
-        for (float f = 1f; f > 0; f -= 0.003f)
+        for (float f = 1f; f > 0; f -= 0.009f)
         {
             Color c = FadePannel.GetComponent<Image>().color;
             c.a = f;
             FadePannel.GetComponent<Image>().color = c;
             yield return null;
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.33f);
+        
         FadePannel.SetActive(false);
+        Destroy(FadePannel);
     }
 }

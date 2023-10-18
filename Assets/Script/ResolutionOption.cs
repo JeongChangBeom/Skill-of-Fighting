@@ -19,7 +19,7 @@ public class ResolutionOption : MonoBehaviour
     {
         for(int i=0;i<Screen.resolutions.Length;i++)
         {
-            if(Mathf.Ceil(Screen.resolutions[i].refreshRate) == 60 && Screen.resolutions[i].width % 16 == 0 && Screen.resolutions[i].height % 9 == 0 && Screen.resolutions[i].width >= 1280)
+            if(Mathf.Ceil(Screen.resolutions[i].refreshRate) == 60 && (Screen.resolutions[i].width * 9 == Screen.resolutions[i].height * 16) && Screen.resolutions[i].width >= 1280)
             {
                 resolutions.Add(Screen.resolutions[i]);
             }
