@@ -27,9 +27,10 @@ public class BossStatus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ParryAttack"))
+        if (collision.gameObject.CompareTag("playerAttack"))
         {
             bossHP--;
+            Destroy(collision.gameObject);
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public float attackSpeed = 1000;
-    public PlayerController playercontroller;
+    private PlayerController playercontroller;
     void Start()
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
