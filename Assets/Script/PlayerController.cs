@@ -33,23 +33,22 @@ public class PlayerController : MonoBehaviour
     public GameObject plyaerAttack_Prefab;
 
     private PlayerHp playerHp;
-    private BossHP bossHp;
+    private BossStatus bossStatus;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bulletspawn_test = GameObject.Find("Enemy").GetComponent<BulletSpawn_test>();
         parryattack = GameObject.FindWithTag("Player").transform.Find("Parry_Attack").GetComponent<ParryAttack>();
         playerHp = GetComponent<PlayerHp>();
-        bossHp = GameObject.FindWithTag("boss").GetComponent<BossHP>();
+        bossStatus = GameObject.FindWithTag("boss").GetComponent<BossStatus>();
     }
 
     void Update()
     {
         playerPosition = transform.position;
-        dirPos = playerPosition - bulletspawn_test.enemyPosition;
+        dirPos = playerPosition - bossStatus.bossPosition;
 
-        if (!playerHp.isDead && bossHp.bossHP > 0 && !GameManager.instance.isPause)
+        if (!playerHp.isDead && bossStatus.bossHP > 0 && !GameManager.instance.isPause)
         {
             Move();
             Jump();
@@ -113,7 +112,7 @@ public class PlayerController : MonoBehaviour
             if (backstepCooldown <= 0.0f)
             {
                 backstepOn = true;
-            }  
+            }
         }
         else
         {
@@ -147,7 +146,7 @@ public class PlayerController : MonoBehaviour
         if (!parryOn)
         {
             parryCooldown -= Time.deltaTime;
-            if(parryCooldown <= 0.0f)
+            if (parryCooldown <= 0.0f)
             {
                 parryOn = true;
             }

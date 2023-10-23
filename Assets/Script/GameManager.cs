@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private PlayerController playerController;
-    private BossHP bossHP;
 
     private Slider hpBar;
 
@@ -18,7 +17,7 @@ public class GameManager : MonoBehaviour
     private Text parry_text;
 
     private PlayerHp playerHp;
-    private BossHP bossHp;
+    private BossStatus bossStatus;
 
     private GameObject PauseText;
     public bool isPause = false;
@@ -52,14 +51,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        bossHP = GameObject.FindWithTag("boss").GetComponent<BossHP>();
         hpBar = GameObject.Find("Canvas").transform.Find("BossHp").GetComponent<Slider>();
         backStep = GameObject.Find("Canvas").transform.Find("BackStep_Image").GetComponent<Image>();
         parry = GameObject.Find("Canvas").transform.Find("Parry_Image").GetComponent<Image>();
         backStep_text = GameObject.Find("Canvas").transform.Find("BackStep_Image/BackStep_CoolDown").GetComponent<Text>();
         parry_text = GameObject.Find("Canvas").transform.Find("Parry_Image/Parry_CoolDown").GetComponent<Text>();
         playerHp = GameObject.FindWithTag("Player").GetComponent<PlayerHp>();
-        bossHp = GameObject.FindWithTag("boss").GetComponent<BossHP>();
+        bossStatus = GameObject.FindWithTag("boss").GetComponent<BossStatus>();
         PauseText = GameObject.Find("Canvas").transform.Find("PauseText").gameObject;
 
         playerHp.isDead = false;
@@ -69,12 +67,12 @@ public class GameManager : MonoBehaviour
     {
         BossHpBar();
 
-        if (!playerHp.isDead && bossHp.bossHP > 0)
+        if (!playerHp.isDead && bossStatus.bossHP > 0)
         {
             Pause();
         }
 
-        if (!playerHp.isDead && bossHp.bossHP > 0 && !isPause)
+        if (!playerHp.isDead && bossStatus.bossHP > 0 && !isPause)
         {
             BackStepCoolDown();
             ParryCoolDown();
@@ -143,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void BossHpBar()
     {
-        hpBar.value = bossHP.bossHP;
+        hpBar.value = bossStatus.bossHP;
 
         if (hpBar.value <= 0)
         {

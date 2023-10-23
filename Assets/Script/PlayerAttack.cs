@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("boss"))
         {
-            collision.gameObject.GetComponent<BossHP>().bossHP--;
+            collision.gameObject.GetComponent<BossStatus>().bossHP--;
             Destroy(this.gameObject);
         }
     }

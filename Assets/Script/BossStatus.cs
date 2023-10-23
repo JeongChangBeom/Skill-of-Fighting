@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossHP : MonoBehaviour
+public class BossStatus : MonoBehaviour
 {
+    public Vector3 bossPosition;
+
     public float bossHP = 3;
 
     private GameObject clearText;
@@ -19,6 +21,8 @@ public class BossHP : MonoBehaviour
         {
             BossDie();
         }
+
+        BossPosition();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,5 +38,10 @@ public class BossHP : MonoBehaviour
         clearText.SetActive(true);
 
         Time.timeScale = 0;
+    }
+    
+    public void BossPosition()
+    {
+        bossPosition = transform.position;
     }
 }
