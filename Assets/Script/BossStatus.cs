@@ -25,15 +25,6 @@ public class BossStatus : MonoBehaviour
         BossPosition();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("playerAttack"))
-        {
-            bossHP--;
-            Destroy(collision.gameObject);
-        }
-    }
-
     public void BossDie()
     {
         clearText.SetActive(true);

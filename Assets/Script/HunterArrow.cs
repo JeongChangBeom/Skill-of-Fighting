@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hunter_Arrow : MonoBehaviour
+public class HunterArrow : MonoBehaviour
 {
     public float attackSpeed = 50;
     private PlayerController playercontroller;

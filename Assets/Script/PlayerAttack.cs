@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public float attackSpeed = 1000;
+    public float attackSpeed = 100;
     private PlayerController playercontroller;
+    private BossHunter bossHunter;
     void Start()
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        bossHunter = GameObject.FindWithTag("boss").GetComponent<BossHunter>();
         
         if(playercontroller.dirPos.x <= 0)
         {
@@ -26,6 +28,14 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("boss"))
         {
+            if(collision.gameObject.name == "Boss_Hunter")
+            {
+                if(collision.gameObject.GetComponent<BossStatus>().bossHP > 1)
+                {
+                    bossHunter.Pattern_Move();
+                }
+            }
+
             collision.gameObject.GetComponent<BossStatus>().bossHP--;
             Destroy(this.gameObject);
         }

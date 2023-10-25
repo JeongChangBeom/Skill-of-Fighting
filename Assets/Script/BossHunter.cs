@@ -6,8 +6,8 @@ public class BossHunter : MonoBehaviour
 {
     private PlayerController playercontroller;
 
-    public float spawnRateMin = 0.5f;
-    public float spawnRateMax = 3f;
+    public float patternRateMin = 0.5f;
+    public float patternRateMax = 3f;
     private float patternRate;
     private float timeAfterPattern;
 
@@ -17,7 +17,7 @@ public class BossHunter : MonoBehaviour
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
-        patternRate = Random.Range(spawnRateMin, spawnRateMax);
+        patternRate = Random.Range(patternRateMin, patternRateMax);
     }
 
     // Update is called once per frame
@@ -31,21 +31,28 @@ public class BossHunter : MonoBehaviour
         {
             timeAfterPattern = 0f;
 
-            int random = Random.Range(0, 3);
+            int random = Random.Range(0, 10);
 
             switch(random){
                 case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
                     Pattern_Shooting();
                     break;
-                case 1:
+                case 6:
+                case 7:
                     Pattern_Shooting_Parry();
                     break;
-                case 2:
-                    print(3);
+                case 8:
+                case 9:
+                    Pattern_Move();
                     break;
             }
 
-            patternRate = Random.Range(spawnRateMin, spawnRateMax);
+            patternRate = Random.Range(patternRateMin, patternRateMax);
         }
     }
 
@@ -71,8 +78,15 @@ public class BossHunter : MonoBehaviour
         Instantiate(arrow_parry, transform.position, transform.rotation);
     }
 
-    private void Pattern_Move()
+    public void Pattern_Move()
     {
-
+        if(transform.position.x >= 0)
+        {
+            transform.position = new Vector3(-22.5f, -8.16f, 1);
+        }
+        else
+        {
+            transform.position = new Vector3(22.5f, -8.16f, 1);
+        }
     }
 }
