@@ -13,9 +13,12 @@ public class BossHunter : MonoBehaviour
 
     public GameObject arrow;
     public GameObject arrow_parry;
+
+    private Animator anim;
     void Start()
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
 
         patternRate = Random.Range(patternRateMin, patternRateMax);
     }
@@ -40,11 +43,13 @@ public class BossHunter : MonoBehaviour
                 case 3:
                 case 4:
                 case 5:
-                    Pattern_Shooting();
+                    Invoke("Pattern_Shooting",0.5f);
+                    anim.SetBool("isAttack", true);
                     break;
                 case 6:
                 case 7:
-                    Pattern_Shooting_Parry();
+                    Invoke("Pattern_Shooting_Parry", 0.5f);
+                    anim.SetBool("isAttack", true);
                     break;
                 case 8:
                 case 9:
@@ -54,6 +59,10 @@ public class BossHunter : MonoBehaviour
 
             patternRate = Random.Range(patternRateMin, patternRateMax);
         }
+        else
+            {
+                anim.SetBool("isAttack", false);
+            }
     }
 
     private void LookPlayer()
@@ -70,11 +79,29 @@ public class BossHunter : MonoBehaviour
 
     private void Pattern_Shooting()
     {
+        if(playercontroller.dirPos.x <= 0)
+        {
+            arrow.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
+        else if(playercontroller.dirPos.x > 0)
+        {
+            arrow.transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+
+        }
         Instantiate(arrow, transform.position, transform.rotation);
     }
 
     private void Pattern_Shooting_Parry()
     {
+        if (playercontroller.dirPos.x <= 0)
+        {
+            arrow_parry.transform.localScale = new Vector3(2f, 2f, 2f);
+        }
+        else if (playercontroller.dirPos.x > 0)
+        {
+            arrow_parry.transform.localScale = new Vector3(-2f, 2f, 2f);
+
+        }
         Instantiate(arrow_parry, transform.position, transform.rotation);
     }
 
