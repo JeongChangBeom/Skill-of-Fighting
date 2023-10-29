@@ -35,10 +35,13 @@ public class PlayerController : MonoBehaviour
     private PlayerHp playerHp;
     private BossStatus bossStatus;
 
+    private Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         parryattack = GameObject.FindWithTag("Player").transform.Find("Parry_Attack").GetComponent<ParryAttack>();
+        anim = GetComponent<Animator>();
         playerHp = GetComponent<PlayerHp>();
         bossStatus = GameObject.FindWithTag("boss").GetComponent<BossStatus>();
     }
@@ -72,12 +75,18 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
             key = -1;
             dir = -1;
+            anim.SetBool("isMove", true);
         }
         else if (Input.GetKey(KeyCode.RightArrow) && moveOn && !parryattack.parryattackOn)
         {
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             key = 1;
             dir = 1;
+            anim.SetBool("isMove", true);
+        }
+        else
+        {
+            anim.SetBool("isMove", false);
         }
 
         //현재 플레이어 속도
