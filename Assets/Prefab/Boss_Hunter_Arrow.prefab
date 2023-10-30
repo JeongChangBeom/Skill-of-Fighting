@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2817499635920245827}
   - component: {fileID: 6671650491774508179}
   - component: {fileID: -2216804615013736087}
-  - component: {fileID: 4562704202921902098}
   - component: {fileID: 7199044992286760647}
+  - component: {fileID: 6828549476449070914}
   m_Layer: 3
   m_Name: Boss_Hunter_Arrow
   m_TagString: bossAttack
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.806691, y: -7.8650594, z: 0}
-  m_LocalScale: {x: -1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,8 +114,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4562704202921902098
-CircleCollider2D:
+--- !u!114 &7199044992286760647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944937782379173648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed274c8095050fc41a3b3e5f2ee61fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 20
+--- !u!61 &6828549476449070914
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,22 +156,19 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005600691, y: 0.092421845}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5000001
---- !u!114 &7199044992286760647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944937782379173648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed274c8095050fc41a3b3e5f2ee61fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSpeed: 20
+  m_Size: {x: 1.7647443, y: 0.17956999}
+  m_EdgeRadius: 0

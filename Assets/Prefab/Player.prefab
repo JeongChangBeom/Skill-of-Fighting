@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 8207132290761856415}
   - component: {fileID: 3184757981766685274}
   - component: {fileID: 8524358337283895546}
+  - component: {fileID: 849342372619157516}
   m_Layer: 6
   m_Name: Parry_Range
   m_TagString: parry
@@ -259,7 +260,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -306,6 +307,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &849342372619157516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628108599811968066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825099b7487befb409ae62f699c67340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3670048269440044962
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +335,8 @@ GameObject:
   - component: {fileID: 5923193885210022350}
   - component: {fileID: 8501610801461651565}
   - component: {fileID: 7305343014510093579}
+  - component: {fileID: 9212598502707388486}
+  - component: {fileID: 3991935434865179464}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -387,7 +402,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: c336a432994ad0b42b2599e149e3d02d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e709ccc1581663c4897dceae974d57fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -440,9 +455,9 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   dirPos: {x: 0, y: 0, z: 0}
   isJump: 1
-  moveSpeed: 14.9
+  moveSpeed: 100
   MaxmoveSpeed: 15
-  jumpPower: 15
+  jumpPower: 20
   backstepPower: 100
   parryCooldown: 3
   backstepCooldown: 3
@@ -478,13 +493,13 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.14548397, y: -0.80663157}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 6.25, y: 6.25}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -536,7 +551,7 @@ CircleCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.7419462}
   serializedVersion: 2
@@ -571,13 +586,13 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.039465904, y: -0.3472941}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 6.25, y: 6.25}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -586,3 +601,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.1949081, y: 1.1900764}
   m_EdgeRadius: 0
+--- !u!251 &9212598502707388486
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670048269440044962}
+  m_Enabled: 1
+  m_UseColliderMask: 0
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 9
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!95 &3991935434865179464
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670048269440044962}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9bc8f1625c7ba94fba44598c4f23f5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

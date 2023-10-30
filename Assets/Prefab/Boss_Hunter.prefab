@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4909381234099563016}
   - component: {fileID: 8550984303891164620}
   - component: {fileID: 7595144158702576912}
+  - component: {fileID: 7158006436732209927}
   m_Layer: 10
   m_Name: Boss_Hunter
   m_TagString: boss
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 3ef91e7db1b1bf343b3fcf54d00d1312, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -158,7 +159,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d6245414e5fd1499b37a51aa0f9e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRateMin: 0.5
-  spawnRateMax: 3
+  patternRateMin: 0.5
+  patternRateMax: 3
   arrow: {fileID: 944937782379173648, guid: 1b496ae8b30dbbc489e75639edb126d0, type: 3}
   arrow_parry: {fileID: 4586372519219267960, guid: e184f91ee48e0a84da48ad4e9528f5cf, type: 3}
+  smoke: {fileID: 2433282508537954060, guid: 6fe7a594b56737b4aa3de7ebaa3cab11, type: 3}
+--- !u!95 &7158006436732209927
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320990912703977249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8204a172325950a47b7149e806d755ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

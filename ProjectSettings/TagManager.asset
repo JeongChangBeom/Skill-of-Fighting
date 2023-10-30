@@ -10,6 +10,7 @@ TagManager:
   - playerAttack
   - bossAttack
   - bossAttack_parry
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Avoid
   - Player_Attack
   - Boss
-  - 
-  - 
+  - Ground
+  - Bomb
   - 
   - 
   - 
