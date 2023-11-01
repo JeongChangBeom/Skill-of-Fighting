@@ -12,11 +12,11 @@ public class Arrow : MonoBehaviour
 
         if (playercontroller.dirPos.x <= 0)
         {
-            GetComponent<Rigidbody2D>().AddForce(transform.right * attackSpeed, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(transform.right * -attackSpeed, ForceMode2D.Impulse);
         }
         else if (playercontroller.dirPos.x > 0)
         {
-            GetComponent<Rigidbody2D>().AddForce(transform.right * -attackSpeed, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(transform.right * attackSpeed, ForceMode2D.Impulse);
         }
 
         Destroy(gameObject, 5);

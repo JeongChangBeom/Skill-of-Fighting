@@ -544,8 +544,8 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   dirPos: {x: 0, y: 0, z: 0}
   isJump: 1
-  moveSpeed: 5
-  MaxmoveSpeed: 10
+  moveSpeed: 50
+  MaxmoveSpeed: 20
   jumpPower: 20
   backstepPower: 100
   parryCooldown: 3

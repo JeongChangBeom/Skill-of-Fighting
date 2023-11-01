@@ -89,7 +89,7 @@ public class BossHunter : MonoBehaviour
             arrow.transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
 
         }
-        Instantiate(arrow, transform.position, transform.rotation);
+        Instantiate(arrow, transform.position - new Vector3(0, 0.5f, 0), transform.rotation);
     }
 
     private void Pattern_Shooting_Parry()

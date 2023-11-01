@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossStatus : MonoBehaviour
 {
@@ -30,10 +31,34 @@ public class BossStatus : MonoBehaviour
         clearText.SetActive(true);
 
         Time.timeScale = 0;
+
+        StartCoroutine(NextStage());
     }
     
     public void BossPosition()
     {
         bossPosition = transform.position;
+    }
+
+
+    IEnumerator NextStage()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        Time.timeScale = 1;
+        if (SceneManager.GetActiveScene().name == "Stage01")
+        {
+            SceneManager.LoadScene("Stage02");
+        }
+
+        if (SceneManager.GetActiveScene().name == "Stage02")
+        {
+            SceneManager.LoadScene("Stage03");
+        }
+
+        if (SceneManager.GetActiveScene().name == "Stage03")
+        {
+            SceneManager.LoadScene("Ending");
+        }
     }
 }
