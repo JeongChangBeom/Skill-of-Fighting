@@ -104,14 +104,14 @@ public class PlayerController : MonoBehaviour
         {
             if (!isJump)
             {
-                anim.SetBool("isJump",true);
+                anim.SetBool("isJump", true);
                 isJump = true;
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             }
         }
         else
         {
-            anim.SetBool("isJump",false);
+            anim.SetBool("isJump", false);
         }
     }
 

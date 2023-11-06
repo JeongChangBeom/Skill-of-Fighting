@@ -115,6 +115,7 @@ public class BossGunner : MonoBehaviour
     private void BulletSpawn()
     {
         Instantiate(bullet, bulletGun.transform.position, bulletGun.transform.rotation);
+        anim.SetBool("isShooting", true);
     }
 
     private void Pattern_Shooting_Parry()
@@ -193,5 +194,6 @@ public class BossGunner : MonoBehaviour
     private void PatternStop()
     {
         patternON = false;
+        anim.SetBool("isShooting", false);
     }
 }

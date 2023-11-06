@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    
+
     public Transform playerTransform;
-    
+
     public Vector3 cameraPosition;
 
     public Vector2 center;
@@ -32,9 +32,10 @@ public class CameraController : MonoBehaviour
 
     void LimitCameraArea()
     {
-        transform.position = Vector3.Lerp(transform.position,
+            transform.position = Vector3.Lerp(transform.position,
                                           playerTransform.position + cameraPosition,
                                           Time.deltaTime * cameraMoveSpeed);
+
         float lx = mapSize.x - width;
         float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
 
@@ -42,6 +43,7 @@ public class CameraController : MonoBehaviour
         float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
+
     }
 
     private void OnDrawGizmos()

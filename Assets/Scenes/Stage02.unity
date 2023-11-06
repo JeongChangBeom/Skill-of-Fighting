@@ -361,7 +361,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2905082454318243510, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2013053164}
   m_SourcePrefab: {fileID: 100100000, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
 --- !u!1 &279112464
 GameObject:
@@ -1779,7 +1782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  cameraPosition: {x: 0, y: 0, z: -10}
+  cameraPosition: {x: 10, y: 0, z: -10}
   center: {x: 0, y: 2}
   mapSize: {x: 30, y: 16}
   cameraMoveSpeed: 4
@@ -1990,6 +1993,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939235310}
   m_CullTransparentMesh: 1
+--- !u!1 &2013053156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2905082454318243510, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
+  m_PrefabInstance: {fileID: 231091435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2013053164
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013053156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2b5349b3d8bd8e4aadb3fc59cdab738, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2016175142
 GameObject:
   m_ObjectHideFlags: 0
