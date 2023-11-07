@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossGunner : MonoBehaviour
 {
     private PlayerController playercontroller;
-    private Rigidbody2D rb;
 
     public float patternRateMin = 0.5f;
     public float patternRateMax = 2f;
@@ -28,7 +27,6 @@ public class BossGunner : MonoBehaviour
     void Start()
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         patternRate = Random.Range(patternRateMin, patternRateMax);
@@ -104,28 +102,35 @@ public class BossGunner : MonoBehaviour
     {
         patternON = true;
 
+        anim.SetBool("isShooting", true);
         BulletSpawn();
         Invoke("BulletSpawn", 0.2f);
         Invoke("BulletSpawn", 0.4f);
 
-
-        Invoke("PatternStop", 0.6f);
+        Invoke("PatternStop", 0.4f);
     }
 
     private void BulletSpawn()
     {
         Instantiate(bullet, bulletGun.transform.position, bulletGun.transform.rotation);
-        anim.SetBool("isShooting", true);
     }
 
     private void Pattern_Shooting_Parry()
     {
         patternON = true;
 
-        ParryBulletSpawn();
+        GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(true);
 
+        Invoke("ExclamationMarkOff", 0.5f);
 
-        Invoke("PatternStop", 0.2f);
+        Invoke("ParryBulletSpawn", 0.7f);
+
+        Invoke("PatternStop", 0.7f);
+    }
+
+    private void ExclamationMarkOff()
+    {
+        GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(false);
     }
 
     private void ParryBulletSpawn()
@@ -143,7 +148,7 @@ public class BossGunner : MonoBehaviour
         Invoke("BombSpawn", 0.6f);
         Invoke("BombSpawn", 0.8f);
 
-        Invoke("PatternStop", 1f);
+        Invoke("PatternStop", 0.8f);
     }
 
     private void BombSpawn()

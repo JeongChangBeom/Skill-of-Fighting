@@ -46,6 +46,7 @@ public class BossStatus : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
 
         Time.timeScale = 1;
+
         if (SceneManager.GetActiveScene().name == "Stage01")
         {
             SceneManager.LoadScene("Stage02");

@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    public GameObject parryEff;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A) && parryOn && !parryattack.parryattackOn)
         {
             parryOn = false;
+            parryEff.SetActive(true);
             GameObject.Find("Player").transform.Find("Parry_Range").gameObject.SetActive(true);
             Invoke("ParryOff", 0.5f);
         }
@@ -196,6 +199,7 @@ public class PlayerController : MonoBehaviour
     private void ParryOff()
     {
         GameObject.Find("Player").transform.Find("Parry_Range").gameObject.SetActive(false);
+        parryEff.SetActive(false);
     }
 
     private void BackStepCoolDown()

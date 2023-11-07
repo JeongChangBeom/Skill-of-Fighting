@@ -27,8 +27,6 @@ public class Bomb : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ground"))
         {
-         
-
             Invoke("ExplosionBomb", 1.0f);
             Invoke("DestroyBomb", 2.0f);
         }
