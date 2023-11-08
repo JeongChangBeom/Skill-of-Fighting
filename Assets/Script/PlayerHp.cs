@@ -14,6 +14,8 @@ public class PlayerHp : MonoBehaviour
     
     public void Die()
     {
+        GameObject.Find("Player").transform.Find("Parry_Range").gameObject.SetActive(false);
+
         isDead = true;
 
         gameoverText.SetActive(true);

@@ -81,7 +81,7 @@ public class BossGunner : MonoBehaviour
 
         if (!bulletRainON)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.01f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.02f);
         }
 
     }
@@ -142,17 +142,20 @@ public class BossGunner : MonoBehaviour
     {
         patternON = true;
 
-        BombSpawn();
-        Invoke("BombSpawn", 0.2f);
+        anim.SetBool("isGrander", true);
+
         Invoke("BombSpawn", 0.4f);
+        Invoke("BombSpawn", 0.5f);
         Invoke("BombSpawn", 0.6f);
+        Invoke("BombSpawn", 0.7f);
         Invoke("BombSpawn", 0.8f);
 
-        Invoke("PatternStop", 0.8f);
+        Invoke("PatternStop", 1f);
     }
 
     private void BombSpawn()
     {
+        anim.SetBool("isGrander", false);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
     }
 
@@ -160,24 +163,31 @@ public class BossGunner : MonoBehaviour
     {
         patternON = true;
 
-        bulletRainON = true;
+        anim.SetBool("isJump", true);
+        Invoke("BulletRainStart", 0.7f);
 
-        Invoke("BulletRainSpawn", 0.5f);
-        Invoke("BulletRainSpawn", 1f);
         Invoke("BulletRainSpawn", 1.5f);
         Invoke("BulletRainSpawn", 2f);
         Invoke("BulletRainSpawn", 2.5f);
+        Invoke("BulletRainSpawn", 3f);
+        Invoke("BulletRainSpawn", 3.5f);
 
         Invoke("Move", 3f);
 
-        Invoke("BulletRainStop", 4f);
+        Invoke("BulletRainStop", 6f);
 
 
-        Invoke("PatternStop", 6f);
+        Invoke("PatternStop", 9f);
+    }
+
+    private void BulletRainStart()
+    {
+        bulletRainON = true;
     }
 
     private void Move()
     {
+        anim.SetBool("isJump", false);
         transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
     }
 

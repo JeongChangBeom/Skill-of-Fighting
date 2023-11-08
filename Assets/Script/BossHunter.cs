@@ -30,7 +30,6 @@ public class BossHunter : MonoBehaviour
         patternRate = Random.Range(patternRateMin, patternRateMax);
     }
 
-    // Update is called once per frame
     void Update()
     {
         LookPlayer();
@@ -78,11 +77,11 @@ public class BossHunter : MonoBehaviour
         {
             if (transform.position.x >= 0)
             {
-                transform.position = Vector3.Lerp(transform.position, targetRight.transform.position, 0.005f);
+                transform.position = Vector3.Lerp(transform.position, targetRight.transform.position, 0.02f);
             }
             else if (transform.position.x < 0)
             {
-                transform.position = Vector3.Lerp(transform.position, targetLeft.transform.position, 0.005f);
+                transform.position = Vector3.Lerp(transform.position, targetLeft.transform.position, 0.02f);
             }
         }
 
@@ -90,11 +89,11 @@ public class BossHunter : MonoBehaviour
         {
             if (transform.position.x >= 0)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(17, transform.position.y, transform.position.z), 0.005f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(17, transform.position.y, transform.position.z), 0.01f);
             }
             else if (transform.position.x < 0)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(-17, transform.position.y, transform.position.z), 0.005f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(-17, transform.position.y, transform.position.z), 0.01f);
             }
         }
     }

@@ -75,7 +75,7 @@ public class BossImmortal : MonoBehaviour
 
         if (missileON)
         {
-            missileready.transform.position = Vector3.Lerp(missileready.transform.position, missile_tagert.transform.position, 0.001f);
+            missileready.transform.position = Vector3.Lerp(missileready.transform.position, missile_tagert.transform.position, 0.005f);
         }
         else
         {

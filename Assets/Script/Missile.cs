@@ -23,7 +23,7 @@ public class Missile : MonoBehaviour
     private void ExplosionMissile()
     {
         this.gameObject.SetActive(false);
-        Instantiate(explosion, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        Instantiate(explosion, transform.position - new Vector3(0, 5, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
     }
 
     private void DestroyMissile()

@@ -173,6 +173,7 @@ public class PlayerController : MonoBehaviour
         {
             parryOn = false;
             parryEff.SetActive(true);
+            this.gameObject.layer = 8;
             GameObject.Find("Player").transform.Find("Parry_Range").gameObject.SetActive(true);
             Invoke("ParryOff", 0.5f);
         }
@@ -180,6 +181,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A) && parryattack.parryattackOn)
         {
             Time.timeScale = 1;
+            anim.SetBool("isCounter", true);
             GameObject.Find("Player").transform.Find("Parry_Attack").gameObject.SetActive(false);
             parryattack.parryattackOn = false;
             parryattack.parryattackStart = false;
@@ -198,7 +200,9 @@ public class PlayerController : MonoBehaviour
 
     private void ParryOff()
     {
+        this.gameObject.layer = 7;
         GameObject.Find("Player").transform.Find("Parry_Range").gameObject.SetActive(false);
+        anim.SetBool("isCounter", false);
         parryEff.SetActive(false);
     }
 

@@ -18,6 +18,11 @@ public class BossStatus : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            bossHP--;
+        }
+
         if (bossHP <= 0)
         {
             BossDie();
