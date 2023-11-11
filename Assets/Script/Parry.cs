@@ -26,6 +26,7 @@ public class Parry : MonoBehaviour
         {
             print("Parry");
 
+            GameObject.Find("Player").GetComponent<Animator>().SetBool("isParry", true);
             GameObject.Find("Player").transform.Find("Parry_Attack").gameObject.SetActive(true);
             parryAttack.parryattackOn = true;
             Destroy(collider.gameObject);

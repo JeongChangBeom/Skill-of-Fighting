@@ -15,14 +15,32 @@ EditorBuildSettings:
     path: Assets/Scenes/Scenario.unity
     guid: f834af382bbaa7f49aa4b6861a7e8739
   - enabled: 1
+    path: Assets/Scenes/Stage01_Before.unity
+    guid: 654561b16234f5c4ab2ada3ba576ab43
+  - enabled: 1
     path: Assets/Scenes/Stage01.unity
     guid: a70bb31e66401f0489d271db91c9de3d
+  - enabled: 1
+    path: Assets/Scenes/Stage01_After.unity
+    guid: 3fdea4f93a5b15844960c573dbe77dde
+  - enabled: 1
+    path: Assets/Scenes/Stage02_Before.unity
+    guid: c2cb4ec9e115d024d85d03bcf745be2a
   - enabled: 1
     path: Assets/Scenes/Stage02.unity
     guid: 90f4c92a2cceacf4f8e7827a9b8b272d
   - enabled: 1
+    path: Assets/Scenes/Stage02_After.unity
+    guid: 7b91ec6e425984c4281e328c2b9ee071
+  - enabled: 1
+    path: Assets/Scenes/Stage03_Before.unity
+    guid: 8c6f5f41588799143b8b08738e682014
+  - enabled: 1
     path: Assets/Scenes/Stage03.unity
     guid: 3c1ec36963b71d143b4f773777605d22
+  - enabled: 1
+    path: Assets/Scenes/Stage03_After.unity
+    guid: 721aec5b3f3edf7459f0311e8f3b8a54
   - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: 31e2824679e35a64c87b304868fd8e70

@@ -41,11 +41,11 @@ public class ParryAttack : MonoBehaviour
             parryattackStart = true;
         }
 
-        if (transform.rotation.eulerAngles.z < 316 && transform.rotation.eulerAngles.z > 314)
+        if (transform.rotation.eulerAngles.z < 320 && transform.rotation.eulerAngles.z > 310)
         {
             reverse = false;
         }
-        else if (transform.rotation.eulerAngles.z < 46 && transform.rotation.eulerAngles.z > 44)
+        else if (transform.rotation.eulerAngles.z < 50 && transform.rotation.eulerAngles.z > 40)
         {
             reverse = true;
         }
@@ -71,11 +71,11 @@ public class ParryAttack : MonoBehaviour
             parryattackStart = true;
         }
 
-        if (transform.rotation.eulerAngles.z < 316 && transform.rotation.eulerAngles.z > 314)
+        if (transform.rotation.eulerAngles.z < 320 && transform.rotation.eulerAngles.z > 310)
         {
             reverse = false;
         }
-        else if (transform.rotation.eulerAngles.z < 46 && transform.rotation.eulerAngles.z > 44)
+        else if (transform.rotation.eulerAngles.z < 50 && transform.rotation.eulerAngles.z > 40)
         {
             reverse = true;
         }
@@ -99,5 +99,7 @@ public class ParryAttack : MonoBehaviour
         GameObject.Find("Player").transform.Find("Parry_Attack").gameObject.SetActive(false);
         parryattackOn = false;
         parryattackStart = false;
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isParry", false);
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isCounter", false);
     }
 }

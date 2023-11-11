@@ -30,70 +30,73 @@ public class BossHunter : MonoBehaviour
         patternRate = Random.Range(patternRateMin, patternRateMax);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        LookPlayer();
-
-        if (!patternON)
+        if (GameManager.instance.GameStart && GameObject.FindWithTag("boss").GetComponent<BossStatus>().bossHP > 0)
         {
-            timeAfterPattern += Time.deltaTime;
-        }
+            LookPlayer();
 
-        if (timeAfterPattern >= patternRate)
-        {
-            timeAfterPattern = 0f;
-
-            int random = Random.Range(0, 10);
-
-            switch (random)
+            if (!patternON)
             {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                    Invoke("Pattern_Shooting", 0.5f);
-                    anim.SetBool("isAttack", true);
-                    break;
-                case 6:
-                case 7:
-                    Pattern_Shooting_Parry();
-                    break;
-                case 8:
-                case 9:
-                    Pattern_Move();
-                    break;
+                timeAfterPattern += Time.deltaTime;
             }
 
-            patternRate = Random.Range(patternRateMin, patternRateMax);
-        }
-        else
-        {
-            anim.SetBool("isAttack", false);
-        }
+            if (timeAfterPattern >= patternRate)
+            {
+                timeAfterPattern = 0f;
 
-        if (backstepON)
-        {
-            if (transform.position.x >= 0)
-            {
-                transform.position = Vector3.Lerp(transform.position, targetRight.transform.position, 0.02f);
-            }
-            else if (transform.position.x < 0)
-            {
-                transform.position = Vector3.Lerp(transform.position, targetLeft.transform.position, 0.02f);
-            }
-        }
+                int random = Random.Range(0, 10);
 
-        if (moveON)
-        {
-            if (transform.position.x >= 0)
-            {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(17, transform.position.y, transform.position.z), 0.01f);
+                switch (random)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        Invoke("Pattern_Shooting", 0.5f);
+                        anim.SetBool("isAttack", true);
+                        break;
+                    case 6:
+                    case 7:
+                        Pattern_Shooting_Parry();
+                        break;
+                    case 8:
+                    case 9:
+                        Pattern_Move();
+                        break;
+                }
+
+                patternRate = Random.Range(patternRateMin, patternRateMax);
             }
-            else if (transform.position.x < 0)
+            else
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(-17, transform.position.y, transform.position.z), 0.01f);
+                anim.SetBool("isAttack", false);
+            }
+
+            if (backstepON)
+            {
+                if (transform.position.x >= 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, targetRight.transform.position, 0.02f);
+                }
+                else if (transform.position.x < 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, targetLeft.transform.position, 0.02f);
+                }
+            }
+
+            if (moveON)
+            {
+                if (transform.position.x >= 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(17, transform.position.y, transform.position.z), 0.01f);
+                }
+                else if (transform.position.x < 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(-17, transform.position.y, transform.position.z), 0.01f);
+                }
             }
         }
     }

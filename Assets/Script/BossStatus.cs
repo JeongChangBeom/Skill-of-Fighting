@@ -35,36 +35,10 @@ public class BossStatus : MonoBehaviour
     {
         clearText.SetActive(true);
 
-        Time.timeScale = 0;
-
-        StartCoroutine(NextStage());
     }
     
     public void BossPosition()
     {
         bossPosition = transform.position;
-    }
-
-
-    IEnumerator NextStage()
-    {
-        yield return new WaitForSecondsRealtime(2f);
-
-        Time.timeScale = 1;
-
-        if (SceneManager.GetActiveScene().name == "Stage01")
-        {
-            SceneManager.LoadScene("Stage02");
-        }
-
-        if (SceneManager.GetActiveScene().name == "Stage02")
-        {
-            SceneManager.LoadScene("Stage03");
-        }
-
-        if (SceneManager.GetActiveScene().name == "Stage03")
-        {
-            SceneManager.LoadScene("Ending");
-        }
     }
 }

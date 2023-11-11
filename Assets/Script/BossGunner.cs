@@ -33,57 +33,59 @@ public class BossGunner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        LookPlayer();
-
-        if (!patternON)
+        if (GameManager.instance.GameStart && GameObject.FindWithTag("boss").GetComponent<BossStatus>().bossHP > 0)
         {
-            timeAfterPattern += Time.deltaTime;
-        }
+            LookPlayer();
 
-        if (timeAfterPattern >= patternRate)
-        {
-            timeAfterPattern = 0f;
-
-            int random = Random.Range(0, 10);
-
-            switch (random)
+            if (!patternON)
             {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                    Invoke("Pattern_Shooting", 0.5f);
-                    break;
-                case 4:
-                case 5:
-                    Invoke("Pattern_Shooting_Parry", 0.5f);
-                    break;
-                case 6:
-                case 7:
-                    Pattern_Bomb();
-                    break;
-                case 8:
-                case 9:
-                    Pattern_BulletRain();
-                    break;
+                timeAfterPattern += Time.deltaTime;
             }
 
-            patternRate = Random.Range(patternRateMin, patternRateMax);
+            if (timeAfterPattern >= patternRate)
+            {
+                timeAfterPattern = 0f;
+
+                int random = Random.Range(0, 10);
+
+                switch (random)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        Invoke("Pattern_Shooting", 0.5f);
+                        break;
+                    case 4:
+                    case 5:
+                        Invoke("Pattern_Shooting_Parry", 0.5f);
+                        break;
+                    case 6:
+                    case 7:
+                        Pattern_Bomb();
+                        break;
+                    case 8:
+                    case 9:
+                        Pattern_BulletRain();
+                        break;
+                }
+
+                patternRate = Random.Range(patternRateMin, patternRateMax);
+            }
+
+
+            if (bulletRainON)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.01f);
+            }
+
+            if (!bulletRainON)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.02f);
+            }
         }
-
-
-        if (bulletRainON)
-        {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.01f);
-        }
-
-        if (!bulletRainON)
-        {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.02f);
-        }
-
     }
 
     private void LookPlayer()
@@ -119,13 +121,28 @@ public class BossGunner : MonoBehaviour
     {
         patternON = true;
 
+        float ran = Random.Range(1.2f, 2.5f);
         GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(true);
 
         Invoke("ExclamationMarkOff", 0.5f);
 
-        Invoke("ParryBulletSpawn", 0.7f);
+        Invoke("AimOn", 0.7f);
 
-        Invoke("PatternStop", 0.7f);
+        Invoke("AimOff", ran - 0.3f);
+
+        Invoke("ParryBulletSpawn", ran);
+
+        Invoke("PatternStop", ran + 0.5f);
+    }
+
+    private void AimOn()
+    {
+        GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(true);
+    }
+
+    private void AimOff()
+    {
+        GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(false);
     }
 
     private void ExclamationMarkOff()

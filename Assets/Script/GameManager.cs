@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject PauseText;
     public bool isPause = false;
+
+    public bool GameStart;
    
 
     public static GameManager instance
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        GameStart = false;
+
         Time.timeScale = 1;
 
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -61,6 +65,8 @@ public class GameManager : MonoBehaviour
         PauseText = GameObject.Find("Canvas").transform.Find("PauseText").gameObject;
 
         playerHp.isDead = false;
+
+        Invoke("StartGame", 1f);
     }
 
     void Update()
@@ -81,6 +87,11 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    private void StartGame()
+    {
+        GameStart = true;
     }
 
     private void Pause()

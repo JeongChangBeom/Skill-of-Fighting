@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private ParryAttack parryattack;
 
-    public GameObject plyaerAttack_Prefab;
+    public GameObject playerAttack_Prefab;
 
     private PlayerHp playerHp;
     private BossStatus bossStatus;
@@ -48,15 +48,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        playerPosition = transform.position;
-        dirPos = playerPosition - bossStatus.bossPosition;
-
-        if (!playerHp.isDead && bossStatus.bossHP > 0 && !GameManager.instance.isPause)
+        if (GameManager.instance.GameStart)
         {
-            Move();
-            Jump();
-            BackStep();
-            Parry();
+            playerPosition = transform.position;
+            dirPos = playerPosition - bossStatus.bossPosition;
+
+            if (!playerHp.isDead && bossStatus.bossHP > 0 && !GameManager.instance.isPause)
+            {
+                Move();
+                Jump();
+                BackStep();
+                Parry();
+            }
         }
     }
 
@@ -134,6 +137,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S) && backstepOn && !parryattack.parryattackOn)
         {
+            anim.SetBool("isBackStep", true);
             this.gameObject.layer = 8;
             rb.velocity = Vector3.zero;
             rb.gravityScale = 0;
@@ -171,6 +175,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A) && parryOn && !parryattack.parryattackOn)
         {
+            anim.SetBool("isCounter", true);
             parryOn = false;
             parryEff.SetActive(true);
             this.gameObject.layer = 8;
@@ -181,20 +186,30 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A) && parryattack.parryattackOn)
         {
             Time.timeScale = 1;
-            anim.SetBool("isCounter", true);
+
             GameObject.Find("Player").transform.Find("Parry_Attack").gameObject.SetActive(false);
             parryattack.parryattackOn = false;
             parryattack.parryattackStart = false;
 
+            anim.SetBool("isAttack", true);
+            Invoke("AttackOff", 0.2f);
+
             if (dirPos.x <= 0)
             {
-                Instantiate(plyaerAttack_Prefab, transform.position, parryattack.transform.rotation);
+                Instantiate(playerAttack_Prefab, transform.position, parryattack.transform.rotation);
             }
             else if (dirPos.x > 0)
             {
-                Instantiate(plyaerAttack_Prefab, transform.position, parryattack.transform.rotation);
+                Instantiate(playerAttack_Prefab, transform.position, parryattack.transform.rotation);
             }
         }
+    }
+
+    private void AttackOff()
+    {
+        anim.SetBool("isAttack", false);
+        anim.SetBool("isParry", false);
+        anim.SetBool("isCounter", false);
     }
 
 
@@ -213,7 +228,8 @@ public class PlayerController : MonoBehaviour
 
     private void BackStepStop()
     {
-        Invoke("AvoidStop", 1f);
+        anim.SetBool("isBackStep", false);
+        Invoke("AvoidStop", 0.5f);
         rb.velocity = Vector3.zero;
         rb.gravityScale = 4;
         moveOn = true;

@@ -33,54 +33,57 @@ public class BossImmortal : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (!patternON)
+        if (GameManager.instance.GameStart && GameObject.FindWithTag("boss").GetComponent<BossStatus>().bossHP > 0)
         {
-            timeAfterPattern += Time.deltaTime;
-        }
-
-        if (timeAfterPattern >= patternRate)
-        {
-            timeAfterPattern = 0f;
-
-            int random = Random.Range(0, 10);
-
-            switch (random)
+            if (!patternON)
             {
-                case 0:
-                case 1:
-                    Pattern_RocketPunch_Left();
-                    break;
-                case 2:
-                case 3:
-                    Pattern_RocketPunch_Right();
-                    break;
-                case 4:
-                case 5:
-                    Pattern_Smash_Left();
-                    break;
-                case 6:
-                case 7:
-                    Pattern_Smash_Right();
-                    break;
-                case 8:
-                case 9:
-                    Pattern_Missile();
-                    break;
+                timeAfterPattern += Time.deltaTime;
             }
 
-            patternRate = Random.Range(patternRateMin, patternRateMax);
-        }
+            if (timeAfterPattern >= patternRate)
+            {
+                timeAfterPattern = 0f;
 
-        if (missileON)
-        {
-            missileready.transform.position = Vector3.Lerp(missileready.transform.position, missile_tagert.transform.position, 0.005f);
-        }
-        else
-        {
-            missileready.transform.position = new Vector3(0, 0, 0);
-        }
+                int random = Random.Range(0, 10);
+
+                switch (random)
+                {
+                    case 0:
+                    case 1:
+                        Pattern_RocketPunch_Left();
+                        break;
+                    case 2:
+                    case 3:
+                        Pattern_RocketPunch_Right();
+                        break;
+                    case 4:
+                    case 5:
+                        Pattern_Smash_Left();
+                        break;
+                    case 6:
+                    case 7:
+                        Pattern_Smash_Right();
+                        break;
+                    case 8:
+                    case 9:
+                        Pattern_Missile();
+                        break;
+                }
+
+                patternRate = Random.Range(patternRateMin, patternRateMax);
+            }
+
+            if (missileON)
+            {
+                missileready.transform.position = Vector3.Lerp(missileready.transform.position, missile_tagert.transform.position, 0.005f);
+            }
+            else
+            {
+                missileready.transform.position = new Vector3(0, 0, 0);
+            }
+        }     
     }
 
     private void Pattern_RocketPunch_Left()

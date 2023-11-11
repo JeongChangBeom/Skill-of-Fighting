@@ -11,7 +11,7 @@ public class BulletEff : MonoBehaviour
 
         if (playercontroller.dirPos.x > 0)
         {
-            transform.localScale = new Vector3(3f, 3f, 3f);
+            transform.localScale = new Vector3(4f, 2f, 0f);
         }
     }
 }
