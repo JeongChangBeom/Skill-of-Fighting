@@ -633,7 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7a7c2c86f1b7b4aab49f188966fab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textCount: 10
+  textCount: 0
+  maxCount: 10
   hunter: {fileID: 824569205}
   smoke: {fileID: 1151786971}
   backgroundPanel: {fileID: 848381360}
@@ -641,6 +642,7 @@ MonoBehaviour:
   bossPanel: {fileID: 1983157688}
   playerText: {fileID: 1674988595}
   bossText: {fileID: 867485825}
+  talk: []
 --- !u!4 &274901122
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,7 +1351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1151762702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2162,7 +2164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1483282003
 RectTransform:
   m_ObjectHideFlags: 0
