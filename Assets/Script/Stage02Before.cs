@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Stage01Before : MonoBehaviour
+public class Stage02Before : MonoBehaviour
 {
     public int textCount = 0;
     public int maxCount = 10;
 
-    public GameObject hunter;
-    public GameObject smoke;
+    public GameObject gunner;
 
     public GameObject backgroundPanel;
     public GameObject playerPanel;
@@ -39,7 +38,7 @@ public class Stage01Before : MonoBehaviour
 
         GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeIn", true);
 
-        StartCoroutine(HunterIn());
+        StartCoroutine(GunnerIn());
     }
 
     void Update()
@@ -67,12 +66,12 @@ public class Stage01Before : MonoBehaviour
 
         if (!typing)
         {
-            if((textCount % 2 == 0 || textCount == 0) && textCount < maxCount)
+            if ((textCount % 2 == 0 || textCount == 0) && textCount < maxCount)
             {
                 player = true;
                 boss = false;
             }
-            else if((textCount % 2 != 0 || textCount != 0) && textCount < maxCount)
+            else if ((textCount % 2 != 0 || textCount != 0) && textCount < maxCount)
             {
                 player = false;
                 boss = true;
@@ -83,7 +82,7 @@ public class Stage01Before : MonoBehaviour
                 boss = false;
             }
 
-            if(textCount < maxCount)
+            if (textCount < maxCount)
             {
                 StartCoroutine(TypingText(talk[textCount]));
             }
@@ -129,21 +128,15 @@ public class Stage01Before : MonoBehaviour
 
         isTypingRuning = false;
     }
-    IEnumerator HunterIn()
+    IEnumerator GunnerIn()
     {
-        yield return new WaitForSeconds(2.0f);
-        smoke.SetActive(true);
-
-        yield return new WaitForSeconds(0.4f);
-        hunter.SetActive(true);
-
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(3.4f);
         countOn = true;
     }
     IEnumerator NextStage()
     {
         yield return new WaitForSeconds(2.0f);
 
-        SceneManager.LoadScene("Stage01");
+        SceneManager.LoadScene("Stage02");
     }
 }
