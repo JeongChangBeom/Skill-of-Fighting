@@ -13,6 +13,9 @@ public class BossImmortal : MonoBehaviour
     private Animator Left_Arm_anim;
     private Animator Right_Arm_anim;
 
+    public GameObject razer;
+    public GameObject RazerTarget;
+
     public GameObject armLeft;
     public GameObject armRight;
     public GameObject smashEff;
@@ -35,7 +38,7 @@ public class BossImmortal : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameManager.instance.GameStart && GameObject.FindWithTag("boss").GetComponent<BossStatus>().bossHP > 0)
+        if (GameManager.instance.GameStart && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0)
         {
             if (!patternON)
             {
@@ -51,25 +54,28 @@ public class BossImmortal : MonoBehaviour
                 switch (random)
                 {
                     case 0:
-                    case 1:
                         Pattern_RocketPunch_Left();
+                        break;
+                    case 1:
+                        Pattern_RocketPunch_Right();
                         break;
                     case 2:
                     case 3:
-                        Pattern_RocketPunch_Right();
+                        Pattern_Smash_Left();
                         break;
                     case 4:
                     case 5:
-                        Pattern_Smash_Left();
+                        Pattern_Smash_Right();
                         break;
                     case 6:
                     case 7:
-                        Pattern_Smash_Right();
+                        Pattern_Missile();
                         break;
                     case 8:
                     case 9:
-                        Pattern_Missile();
+                        Pattern_Razer_Parry();
                         break;
+
                 }
 
                 patternRate = Random.Range(patternRateMin, patternRateMax);
@@ -191,6 +197,15 @@ public class BossImmortal : MonoBehaviour
         Instantiate(missile, new Vector3(missile_tagert.transform.position.x + random, missile_tagert.transform.position.y, missile_tagert.transform.position.z), missile_tagert.transform.rotation);
     }
 
+    private void Pattern_Razer_Parry()
+    {
+        Invoke("RazerSpawn", 0.5f);
+    }
+
+    private void RazerSpawn()
+    {
+        Instantiate(razer, RazerTarget.transform.position, RazerTarget.transform.rotation);
+    }
     private void PatternStop()
     {
         patternON = false;

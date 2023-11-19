@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletGun : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class BulletGun : MonoBehaviour
     }
     void Update()
     {
-        if(playercontroller.dirPos.x <= 0)
+
+        if(playercontroller.dirPos.x <= 0 && SceneManager.GetActiveScene().name != "Stage03")
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
         }

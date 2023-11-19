@@ -11,6 +11,7 @@ TagManager:
   - bossAttack
   - bossAttack_parry
   - FxTemporaire
+  - ImmortalArm
   layers:
   - Default
   - TransparentFX

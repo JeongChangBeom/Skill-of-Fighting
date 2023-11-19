@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
 
     private Slider hpBar;
+    public Slider leftarmhpBar;
+    public Slider rightarmhpBar;
 
     private Image backStep;
     private Text backStep_text;
@@ -72,20 +74,44 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         BossHpBar();
-
-        if (!playerHp.isDead && bossStatus.bossHP > 0)
+        if(SceneManager.GetActiveScene().name == "Stage03")
         {
-            Pause();
-        }
-
-        if (!playerHp.isDead && bossStatus.bossHP > 0 && !isPause)
-        {
-            BackStepCoolDown();
-            ParryCoolDown();
+            if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0)
+            {
+                Pause();
+            }
         }
         else
         {
-            GameOver();
+            if (!playerHp.isDead && bossStatus.bossHP > 0)
+            {
+                Pause();
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "Stage03")
+        {
+            if (!playerHp.isDead && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0 && !isPause)
+            {
+                BackStepCoolDown();
+                ParryCoolDown();
+            }
+            else
+            {
+                GameOver();
+            }
+        }
+        else
+        {
+            if (!playerHp.isDead && bossStatus.bossHP > 0 && !isPause)
+            {
+                BackStepCoolDown();
+                ParryCoolDown();
+            }
+            else
+            {
+                GameOver();
+            }
         }
     }
 
@@ -152,15 +178,64 @@ public class GameManager : MonoBehaviour
 
     private void BossHpBar()
     {
-        hpBar.value = bossStatus.bossHP;
-
-        if (hpBar.value <= 0)
+        if(SceneManager.GetActiveScene().name == "Stage03")
         {
-            GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(false);
+            if(GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0)
+            {
+                hpBar.gameObject.SetActive(true);
+                leftarmhpBar.gameObject.SetActive(false);
+                rightarmhpBar.gameObject.SetActive(false);
+            }
+            else
+            {
+                hpBar.gameObject.SetActive(false);
+                leftarmhpBar.gameObject.SetActive(true);
+                rightarmhpBar.gameObject.SetActive(true);
+            }
+
+            hpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP;
+            leftarmhpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP;
+            rightarmhpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP;
+
+            if (hpBar.value <= 0)
+            {
+                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(false);
+            }
+            else
+            {
+                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(true);
+            }
+
+            if (leftarmhpBar.value <= 0)
+            {
+                GameObject.Find("Canvas").transform.Find("LeftArmHp/Fill Area").gameObject.SetActive(false);
+            }
+            else
+            {
+                GameObject.Find("Canvas").transform.Find("LeftArmHp/Fill Area").gameObject.SetActive(true);
+            }
+
+            if (rightarmhpBar.value <= 0)
+            {
+                GameObject.Find("Canvas").transform.Find("RightArmHp/Fill Area").gameObject.SetActive(false);
+            }
+            else
+            {
+                GameObject.Find("Canvas").transform.Find("RightArmHp/Fill Area").gameObject.SetActive(true);
+            }
         }
         else
         {
-            GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(true); ;
+            hpBar.value = bossStatus.bossHP;
+
+            if (hpBar.value <= 0)
+            {
+                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(false);
+            }
+            else
+            {
+                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(true); ;
+            }
         }
     }
 }

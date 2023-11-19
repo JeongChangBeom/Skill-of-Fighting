@@ -22,11 +22,23 @@ public class Fade : MonoBehaviour
             anim.SetBool("FadeIn", true);
         }
 
-        if(bossStatus.bossHP <= 0)
+        if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            Invoke("FadeOut", 2.0f);
+            if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP <= 0)
+            {
+                Invoke("FadeOut", 2.0f);
 
-            StartCoroutine(NextStage());
+                StartCoroutine(NextStage());
+            }
+        }
+        else
+        {
+            if (bossStatus.bossHP <= 0)
+            {
+                Invoke("FadeOut", 2.0f);
+
+                StartCoroutine(NextStage());
+            }
         }
     }
 

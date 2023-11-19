@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,15 +51,36 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.GameStart)
         {
-            playerPosition = transform.position;
-            dirPos = playerPosition - bossStatus.bossPosition;
-
-            if (!playerHp.isDead && bossStatus.bossHP > 0 && !GameManager.instance.isPause)
+            if (SceneManager.GetActiveScene().name == "Stage03")
             {
-                Move();
-                Jump();
-                BackStep();
-                Parry();
+                playerPosition = transform.position;
+                dirPos = playerPosition - GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().bossPosition;
+            }
+            else
+            {
+                playerPosition = transform.position;
+                dirPos = playerPosition - bossStatus.bossPosition;
+            }
+
+            if (SceneManager.GetActiveScene().name == "Stage03")
+            {
+                if (!playerHp.isDead && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0 && !GameManager.instance.isPause)
+                {
+                    Move();
+                    Jump();
+                    BackStep();
+                    Parry();
+                }
+            }
+            else
+            {
+                if (!playerHp.isDead && bossStatus.bossHP > 0 && !GameManager.instance.isPause)
+                {
+                    Move();
+                    Jump();
+                    BackStep();
+                    Parry();
+                }
             }
         }
     }

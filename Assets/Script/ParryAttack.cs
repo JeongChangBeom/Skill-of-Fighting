@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ParryAttack : MonoBehaviour
 {
@@ -20,15 +21,31 @@ public class ParryAttack : MonoBehaviour
 
     void Update()
     {
-        if (parryattackOn && playercontroller.dirPos.x > 0)
+        if(SceneManager.GetActiveScene().name == "Stage03")
         {
-            playercontroller.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-            ParryAttackLeft();
+            if(playercontroller.dir == -1)
+            {
+                playercontroller.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+                ParryAttackLeft();
+            }
+            else if(playercontroller.dir == 1)
+            {
+                playercontroller.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                ParryAttackRight();
+            }
         }
-        else if(parryattackOn && playercontroller.dirPos.x <= 0)
+        else
         {
-            playercontroller.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            ParryAttackRight();
+            if (parryattackOn && playercontroller.dirPos.x > 0)
+            {
+                playercontroller.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+                ParryAttackLeft();
+            }
+            else if (parryattackOn && playercontroller.dirPos.x <= 0)
+            {
+                playercontroller.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                ParryAttackRight();
+            }
         }
     }
     private void ParryAttackLeft()
