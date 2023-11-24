@@ -25,7 +25,7 @@ public class SmashShockWave : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerHp>().Die();
+            collider.gameObject.GetComponent<PlayerHp>().StartCoroutine(collider.gameObject.GetComponent<PlayerHp>().Die());
         }
     }
 }

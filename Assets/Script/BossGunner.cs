@@ -24,6 +24,7 @@ public class BossGunner : MonoBehaviour
     private Animator anim;
 
     public GameObject target;
+    public GameObject skid;
 
     void Start()
     {
@@ -163,6 +164,9 @@ public class BossGunner : MonoBehaviour
         GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.3f);
+        skid.SetActive(true);
+        skid.transform.position = transform.position + new Vector3(0, -3.5f, 0);
+        skid.GetComponent<Animator>().SetBool("isSkid", true); 
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
         snipingON = true;
 
@@ -171,6 +175,8 @@ public class BossGunner : MonoBehaviour
         snipingON = false;
 
         yield return new WaitForSeconds(0.5f);
+        skid.GetComponent<Animator>().SetBool("isSkid", false);
+        skid.SetActive(false);
         StartCoroutine(Pattern_BulletRain());
     }
 

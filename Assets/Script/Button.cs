@@ -8,7 +8,7 @@ public class Button : MonoBehaviour
     public void MainMenu_Start()
     {
         //SceneManager.LoadScene("Scenario");
-        SceneManager.LoadScene("Stage01");
+        SceneManager.LoadScene("Stage01_Before");
     }
 
     public void MainMenu_Exit()
@@ -37,5 +37,29 @@ public class Button : MonoBehaviour
         GameManager.Dotutorial = true;
         GameManager.instance.GameStart = true;
         Time.timeScale = 1;
+    }
+
+    public void OnMouseEnter()
+    {
+        if (gameObject.name == "OptionButton")
+        {
+            transform.localScale = transform.localScale + new Vector3(0.1f, 0.5f, 0.5f);
+        }
+        else
+        {
+            transform.localScale = transform.localScale + new Vector3(0.5f, 0.5f, 0.5f);
+        }
+    }
+
+    public void OnMouseExit()
+    {
+        if(gameObject.name == "OptionButton")
+        {
+            transform.localScale = new Vector3(0.9f, 4.0f, 3.0f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
+        }
     }
 }

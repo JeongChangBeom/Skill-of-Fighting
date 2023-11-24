@@ -10,6 +10,10 @@ public class BossImmortal : MonoBehaviour
     private float timeAfterPattern;
     private bool patternON = false;
 
+    private SpriteRenderer sp;
+    public Sprite immortal;
+    public Sprite immortal_razer;
+
     private Animator Left_Arm_anim;
     private Animator Right_Arm_anim;
 
@@ -25,10 +29,12 @@ public class BossImmortal : MonoBehaviour
     public GameObject missile_tagert;
 
     private bool missileON = false;
+    private bool razerON = false;
 
     CameraController cameracontroller;
     void Start()
     {
+        sp = GetComponent<SpriteRenderer>();
         Left_Arm_anim = GameObject.Find("Boss_Immortal").transform.Find("Immortal_Arm_Left").GetComponent<Animator>();
         Right_Arm_anim = GameObject.Find("Boss_Immortal").transform.Find("Immortal_Arm_Right").GetComponent<Animator>();
         cameracontroller = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -71,11 +77,17 @@ public class BossImmortal : MonoBehaviour
                             break;
                         case 6:
                         case 7:
-                            StartCoroutine(Pattern_Missile());
+                            if (!missileON)
+                            {
+                                StartCoroutine(Pattern_Missile());
+                            }
                             break;
                         case 8:
                         case 9:
-                            StartCoroutine(Pattern_Razer_Parry());
+                            if (!razerON)
+                            {
+                                StartCoroutine(Pattern_Razer_Parry());
+                            }
                             break;
 
                     }
@@ -96,11 +108,17 @@ public class BossImmortal : MonoBehaviour
                             break;
                         case 6:
                         case 7:
-                            StartCoroutine(Pattern_Missile());
+                            if (!missileON)
+                            {
+                                StartCoroutine(Pattern_Missile());
+                            }
                             break;
                         case 8:
                         case 9:
-                            StartCoroutine(Pattern_Razer_Parry());
+                            if (!razerON)
+                            {
+                                StartCoroutine(Pattern_Razer_Parry());
+                            }
                             break;
                     }
                 }
@@ -120,11 +138,17 @@ public class BossImmortal : MonoBehaviour
                             break;
                         case 6:
                         case 7:
-                            StartCoroutine(Pattern_Missile());
+                            if (!missileON)
+                            {
+                                StartCoroutine(Pattern_Missile());
+                            }
                             break;
                         case 8:
                         case 9:
-                            StartCoroutine(Pattern_Razer_Parry());
+                            if (!razerON)
+                            {
+                                StartCoroutine(Pattern_Razer_Parry());
+                            }
                             break;
                     }
                 }
@@ -137,14 +161,20 @@ public class BossImmortal : MonoBehaviour
                         case 2:
                         case 3:
                         case 4:
-                            StartCoroutine(Pattern_Missile());
+                            if (!missileON)
+                            {
+                                StartCoroutine(Pattern_Missile());
+                            }
                             break;
                         case 5:
                         case 6:
                         case 7:
                         case 8:
                         case 9:
-                            StartCoroutine(Pattern_Razer_Parry());
+                            if (!razerON)
+                            {
+                                StartCoroutine(Pattern_Razer_Parry());
+                            }
                             break;
                     }
                 }
@@ -229,18 +259,31 @@ public class BossImmortal : MonoBehaviour
     {
         missileON = true;
 
-        yield return new WaitForSeconds(1.0f);
-        int random = Random.Range(-10, 11);
-        Instantiate(missile, new Vector3(missile_tagert.transform.position.x + random, missile_tagert.transform.position.y, missile_tagert.transform.position.z), missile_tagert.transform.rotation);
+        if (missileON)
+        {
+            yield return new WaitForSeconds(1.0f);
+            int random = Random.Range(-10, 11);
+            Instantiate(missile, new Vector3(missile_tagert.transform.position.x + random, missile_tagert.transform.position.y, missile_tagert.transform.position.z), missile_tagert.transform.rotation);
 
-        yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f);
+        }
         missileON = false;
     }
 
     IEnumerator Pattern_Razer_Parry()
     {
-        yield return new WaitForSeconds(0.1f);
-        Instantiate(razer, RazerTarget.transform.position, RazerTarget.transform.rotation);
+        razerON = true;
+        if (razerON)
+        {
+            sp.sprite = immortal_razer;
+
+            yield return new WaitForSeconds(0.5f);
+            Instantiate(razer, RazerTarget.transform.position, RazerTarget.transform.rotation);
+
+            yield return new WaitForSeconds(0.1f);
+            sp.sprite = immortal;
+        }
+        razerON = false;
     }
 
     private void PatternStop()

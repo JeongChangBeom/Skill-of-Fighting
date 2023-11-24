@@ -16,7 +16,6 @@ public class ImmortalStatus : MonoBehaviour
 
     private GameObject clearText;
 
-
     private void Start()
     {
         clearText = GameObject.Find("Canvas").transform.Find("ClearText").gameObject;

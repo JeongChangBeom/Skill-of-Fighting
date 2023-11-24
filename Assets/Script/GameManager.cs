@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         BossHpBar();
-        if(SceneManager.GetActiveScene().name == "Stage03")
+        if (SceneManager.GetActiveScene().name == "Stage03")
         {
             if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0)
             {
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
                 BackStepCoolDown();
                 ParryCoolDown();
             }
-            else
+            else if (playerHp.isDead && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0 && !isPause)
             {
                 GameOver();
             }
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
                 BackStepCoolDown();
                 ParryCoolDown();
             }
-            else
+            else if (playerHp.isDead && bossStatus.bossHP > 0 && !isPause)
             {
                 GameOver();
             }
@@ -179,19 +179,22 @@ public class GameManager : MonoBehaviour
 
     private void BossHpBar()
     {
-        if(SceneManager.GetActiveScene().name == "Stage03")
+        if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            if(GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0)
+            if (!playerHp.isDead)
             {
-                hpBar.gameObject.SetActive(true);
-                leftarmhpBar.gameObject.SetActive(false);
-                rightarmhpBar.gameObject.SetActive(false);
-            }
-            else
-            {
-                hpBar.gameObject.SetActive(false);
-                leftarmhpBar.gameObject.SetActive(true);
-                rightarmhpBar.gameObject.SetActive(true);
+                if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0)
+                {
+                    hpBar.gameObject.SetActive(true);
+                    leftarmhpBar.gameObject.SetActive(false);
+                    rightarmhpBar.gameObject.SetActive(false);
+                }
+                else
+                {
+                    hpBar.gameObject.SetActive(false);
+                    leftarmhpBar.gameObject.SetActive(true);
+                    rightarmhpBar.gameObject.SetActive(true);
+                }
             }
 
             hpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP;

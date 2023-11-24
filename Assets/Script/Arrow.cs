@@ -6,6 +6,7 @@ public class Arrow : MonoBehaviour
 {
     public float attackSpeed;
     private PlayerController playercontroller;
+
     void Start()
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -26,7 +27,7 @@ public class Arrow : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerHp>().Die();
+            collider.gameObject.GetComponent<PlayerHp>().StartCoroutine(collider.gameObject.GetComponent<PlayerHp>().Die());
             Destroy(this.gameObject);
         }
     }
