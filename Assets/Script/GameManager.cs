@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     public bool isPause = false;
 
     public bool GameStart;
-   
+
+    public static bool Dotutorial = false;
 
     public static GameManager instance
     {
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
 
         playerHp.isDead = false;
 
-        Invoke("StartGame", 1f);
+        Invoke("StartGame", 2f);
     }
 
     void Update()

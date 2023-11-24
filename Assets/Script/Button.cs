@@ -30,4 +30,12 @@ public class Button : MonoBehaviour
     {
         GameObject.Find("Canvas").transform.Find("Option").gameObject.SetActive(false);
     }
+
+    public void Stage01_TutorialOff()
+    {
+        GameObject.Find("Canvas").transform.Find("Tutorial").gameObject.SetActive(false);
+        GameManager.Dotutorial = true;
+        GameManager.instance.GameStart = true;
+        Time.timeScale = 1;
+    }
 }

@@ -26,11 +26,12 @@ public class BossImmortal : MonoBehaviour
 
     private bool missileON = false;
 
-
+    CameraController cameracontroller;
     void Start()
     {
         Left_Arm_anim = GameObject.Find("Boss_Immortal").transform.Find("Immortal_Arm_Left").GetComponent<Animator>();
         Right_Arm_anim = GameObject.Find("Boss_Immortal").transform.Find("Immortal_Arm_Right").GetComponent<Animator>();
+        cameracontroller = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
         patternRate = Random.Range(patternRateMin, patternRateMax);
     }
@@ -48,37 +49,107 @@ public class BossImmortal : MonoBehaviour
             if (timeAfterPattern >= patternRate)
             {
                 timeAfterPattern = 0f;
-
                 int random = Random.Range(0, 10);
 
-                switch (random)
+                if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP > 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP > 0)
                 {
-                    case 0:
-                        Pattern_RocketPunch_Left();
-                        break;
-                    case 1:
-                        Pattern_RocketPunch_Right();
-                        break;
-                    case 2:
-                    case 3:
-                        Pattern_Smash_Left();
-                        break;
-                    case 4:
-                    case 5:
-                        Pattern_Smash_Right();
-                        break;
-                    case 6:
-                    case 7:
-                        Pattern_Missile();
-                        break;
-                    case 8:
-                    case 9:
-                        Pattern_Razer_Parry();
-                        break;
+                    switch (random)
+                    {
+                        case 0:
+                            StartCoroutine(Pattern_RocketPunch_Left());
+                            break;
+                        case 1:
+                            StartCoroutine(Pattern_RocketPunch_Right());
+                            break;
+                        case 2:
+                        case 3:
+                            StartCoroutine(Pattern_Smash_Left());
+                            break;
+                        case 4:
+                        case 5:
+                            StartCoroutine(Pattern_Smash_Right());
+                            break;
+                        case 6:
+                        case 7:
+                            StartCoroutine(Pattern_Missile());
+                            break;
+                        case 8:
+                        case 9:
+                            StartCoroutine(Pattern_Razer_Parry());
+                            break;
 
+                    }
+                }
+                else if(GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP > 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0)
+                {
+                    switch (random)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                            StartCoroutine(Pattern_RocketPunch_Left());
+                            break;
+                        case 3:
+                        case 4:
+                        case 5:
+                            StartCoroutine(Pattern_Smash_Left());
+                            break;
+                        case 6:
+                        case 7:
+                            StartCoroutine(Pattern_Missile());
+                            break;
+                        case 8:
+                        case 9:
+                            StartCoroutine(Pattern_Razer_Parry());
+                            break;
+                    }
+                }
+                else if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP > 0)
+                {
+                    switch (random)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                            StartCoroutine(Pattern_RocketPunch_Right());
+                            break;
+                        case 3:
+                        case 4:
+                        case 5:
+                            StartCoroutine(Pattern_Smash_Right());
+                            break;
+                        case 6:
+                        case 7:
+                            StartCoroutine(Pattern_Missile());
+                            break;
+                        case 8:
+                        case 9:
+                            StartCoroutine(Pattern_Razer_Parry());
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (random)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            StartCoroutine(Pattern_Missile());
+                            break;
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 9:
+                            StartCoroutine(Pattern_Razer_Parry());
+                            break;
+                    }
                 }
 
-                patternRate = Random.Range(patternRateMin, patternRateMax);
+                    patternRate = Random.Range(patternRateMin, patternRateMax);
             }
 
             if (missileON)
@@ -92,120 +163,86 @@ public class BossImmortal : MonoBehaviour
         }     
     }
 
-    private void Pattern_RocketPunch_Left()
+    IEnumerator Pattern_RocketPunch_Left()
     {
         patternON = true;
-
         Left_Arm_anim.SetBool("isPunch", true);
 
-        Invoke("LeftPunchSapwn", 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(armLeft, armLeft.transform.position, armLeft.transform.rotation);
 
-        Invoke("PunchStop", 2.0f);
+        yield return new WaitForSeconds(1.5f);
+        Left_Arm_anim.SetBool("isPunch", false);
 
-        Invoke("PatternStop", 3.0f);
+        yield return new WaitForSeconds(1.0f);
+        PatternStop();
     }
 
-    private void Pattern_RocketPunch_Right()
+    IEnumerator Pattern_RocketPunch_Right()
     {
         patternON = true;
-
         Right_Arm_anim.SetBool("isPunch", true);
 
-        Invoke("RightPunchSapwn", 0.5f);
-
-        Invoke("PunchStop", 2.0f);
-
-        Invoke("PatternStop", 3.0f);
-    }
-
-    private void LeftPunchSapwn()
-    {
-        Instantiate(armLeft, armLeft.transform.position, armLeft.transform.rotation);
-    }
-
-    private void RightPunchSapwn()
-    {
+        yield return new WaitForSeconds(0.5f);
         Instantiate(armRight, armRight.transform.position, armRight.transform.rotation);
-    }
 
-    private void PunchStop()
-    {
-        Left_Arm_anim.SetBool("isPunch", false);
+        yield return new WaitForSeconds(1.5f);
         Right_Arm_anim.SetBool("isPunch", false);
+
+        yield return new WaitForSeconds(1.0f);
+        PatternStop();
     }
 
-    private void Pattern_Smash_Left()
+    IEnumerator Pattern_Smash_Left()
     {
         patternON = true;
-
         Left_Arm_anim.SetBool("isSmash", true);
 
-        Invoke("LeftSmashEff", 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(smashEff, new Vector3(-5.5f, -10f, 0f), smashEff.transform.rotation);
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
 
-        Invoke("SmashStop", 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        Left_Arm_anim.SetBool("isSmash", false);
 
-        Invoke("PatternStop", 2.0f);
+        yield return new WaitForSeconds(1.0f);
+        PatternStop();
     }
-
-    private void Pattern_Smash_Right()
+    
+    IEnumerator Pattern_Smash_Right()
     {
         patternON = true;
-
         Right_Arm_anim.SetBool("isSmash", true);
 
-        Invoke("RightSmashEff", 0.5f);
-
-        Invoke("SmashStop", 1.0f);
-
-        Invoke("PatternStop", 2.0f);
-    }
-
-    private void LeftSmashEff()
-    {
-        Instantiate(smashEff, new Vector3(-5.5f, -10f, 0f), smashEff.transform.rotation);
-    }
-
-    private void RightSmashEff()
-    {
+        yield return new WaitForSeconds(0.5f);
         Instantiate(smashEff, new Vector3(5.5f, -10f, 0f), smashEff.transform.rotation);
-    }
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
 
-    private void SmashStop()
-    {
-        Left_Arm_anim.SetBool("isSmash", false);
+        yield return new WaitForSeconds(0.5f);
         Right_Arm_anim.SetBool("isSmash", false);
+
+        yield return new WaitForSeconds(1.0f);
+        PatternStop();
     }
 
-    private void Pattern_Missile()
+    IEnumerator Pattern_Missile()
     {
         missileON = true;
 
-        Invoke("MissileSpawn", 1f);
+        yield return new WaitForSeconds(1.0f);
+        int random = Random.Range(-10, 11);
+        Instantiate(missile, new Vector3(missile_tagert.transform.position.x + random, missile_tagert.transform.position.y, missile_tagert.transform.position.z), missile_tagert.transform.rotation);
 
-        Invoke("MissileStop", 1.5f);
-    }
-
-    private void MissileStop()
-    {
+        yield return new WaitForSeconds(0.5f);
         missileON = false;
     }
 
-    private void MissileSpawn()
+    IEnumerator Pattern_Razer_Parry()
     {
-        int random = Random.Range(-10, 11);
-
-        Instantiate(missile, new Vector3(missile_tagert.transform.position.x + random, missile_tagert.transform.position.y, missile_tagert.transform.position.z), missile_tagert.transform.rotation);
-    }
-
-    private void Pattern_Razer_Parry()
-    {
-        Invoke("RazerSpawn", 0.5f);
-    }
-
-    private void RazerSpawn()
-    {
+        yield return new WaitForSeconds(0.1f);
         Instantiate(razer, RazerTarget.transform.position, RazerTarget.transform.rotation);
     }
+
     private void PatternStop()
     {
         patternON = false;

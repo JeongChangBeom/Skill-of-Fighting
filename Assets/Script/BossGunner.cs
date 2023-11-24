@@ -12,6 +12,7 @@ public class BossGunner : MonoBehaviour
     private float timeAfterPattern;
     private bool patternON = false;
     private bool bulletRainON = false;
+    private bool snipingON = false;
 
     public GameObject bullet;
     public GameObject bullet_parry;
@@ -56,34 +57,62 @@ public class BossGunner : MonoBehaviour
                     case 1:
                     case 2:
                     case 3:
-                        Invoke("Pattern_Shooting", 0.5f);
+                        StartCoroutine(Pattern_Shooting_Parry());
+                        //StartCoroutine(Pattern_Shooting());
                         break;
                     case 4:
                     case 5:
-                        Invoke("Pattern_Shooting_Parry", 0.5f);
+                        StartCoroutine(Pattern_Shooting_Parry());
                         break;
                     case 6:
                     case 7:
-                        Pattern_Bomb();
+                        StartCoroutine(Pattern_Shooting_Parry());
+                        //StartCoroutine(Pattern_Bomb());
                         break;
                     case 8:
                     case 9:
-                        Pattern_BulletRain();
+                        StartCoroutine(Pattern_Shooting_Parry());
+                        // StartCoroutine(Pattern_BulletRain());
                         break;
                 }
 
                 patternRate = Random.Range(patternRateMin, patternRateMax);
             }
 
-
             if (bulletRainON)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.01f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.04f);
             }
 
             if (!bulletRainON)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.02f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.05f);
+            }
+
+            if (snipingON)
+            {
+                if (transform.position.x > 0)
+                {
+                    if(playercontroller.dirPos.x < 0)
+                    {
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(30f, transform.position.y, transform.position.z), 0.1f);
+                    }
+                    else
+                    {
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(12f, transform.position.y, transform.position.z), 0.1f);
+                    }
+                }
+                else
+                {
+                    if (playercontroller.dirPos.x < 0)
+                    {
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(-12f, transform.position.y, transform.position.z), 0.1f);
+                    }
+                    else
+                    {
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(-30f, transform.position.y, transform.position.z), 0.1f);
+                    }
+                }
             }
         }
     }
@@ -100,129 +129,139 @@ public class BossGunner : MonoBehaviour
         }
     }
 
-    private void Pattern_Shooting()
+    IEnumerator Pattern_Shooting()
     {
         patternON = true;
-
         anim.SetBool("isShooting", true);
-        BulletSpawn();
-        Invoke("BulletSpawn", 0.2f);
-        Invoke("BulletSpawn", 0.4f);
 
-        Invoke("PatternStop", 0.4f);
-    }
-
-    private void BulletSpawn()
-    {
         Instantiate(bullet, bulletGun.transform.position, bulletGun.transform.rotation);
+
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(bullet, bulletGun.transform.position, bulletGun.transform.rotation);
+
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(bullet, bulletGun.transform.position, bulletGun.transform.rotation);
+
+        PatternStop();
     }
 
-    private void Pattern_Shooting_Parry()
+
+    IEnumerator Pattern_Shooting_Parry()
     {
         patternON = true;
-
-        float ran = Random.Range(1.2f, 2.5f);
+        float ran = Random.Range(0.5f, 1.5f);
         GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(true);
+        anim.SetBool("isSniping",true);
 
-        Invoke("ExclamationMarkOff", 0.5f);
-
-        Invoke("AimOn", 0.7f);
-
-        Invoke("AimOff", ran - 0.3f);
-
-        Invoke("ParryBulletSpawn", ran);
-
-        Invoke("PatternStop", ran + 0.5f);
-    }
-
-    private void AimOn()
-    {
-        GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(true);
-    }
-
-    private void AimOff()
-    {
-        GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(false);
-    }
-
-    private void ExclamationMarkOff()
-    {
+        yield return new WaitForSeconds(0.5f);
         GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(false);
-    }
 
-    private void ParryBulletSpawn()
-    {
+        yield return new WaitForSeconds(0.2f);
+        GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(ran);
+        GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.3f);
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
+        snipingON = true;
+
+        yield return new WaitForSeconds(0.3f);
+        anim.SetBool("isSniping", false);
+        snipingON = false;
+
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Pattern_BulletRain());
     }
 
-    private void Pattern_Bomb()
+
+    IEnumerator Pattern_Bomb()
     {
         patternON = true;
-
         anim.SetBool("isGrander", true);
 
-        Invoke("BombSpawn", 0.4f);
-        Invoke("BombSpawn", 0.5f);
-        Invoke("BombSpawn", 0.6f);
-        Invoke("BombSpawn", 0.7f);
-        Invoke("BombSpawn", 0.8f);
-
-        Invoke("PatternStop", 1f);
-    }
-
-    private void BombSpawn()
-    {
+        yield return new WaitForSeconds(0.4f);
         anim.SetBool("isGrander", false);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+
+        PatternStop();
     }
 
-    private void Pattern_BulletRain()
+    IEnumerator Pattern_BulletRain()
     {
         patternON = true;
-
         anim.SetBool("isJump", true);
-        Invoke("BulletRainStart", 0.7f);
 
-        Invoke("BulletRainSpawn", 1.5f);
-        Invoke("BulletRainSpawn", 2f);
-        Invoke("BulletRainSpawn", 2.5f);
-        Invoke("BulletRainSpawn", 3f);
-        Invoke("BulletRainSpawn", 3.5f);
-
-        Invoke("Move", 3f);
-
-        Invoke("BulletRainStop", 6f);
-
-
-        Invoke("PatternStop", 9f);
-    }
-
-    private void BulletRainStart()
-    {
+        yield return new WaitForSeconds(0.7f);
         bulletRainON = true;
-    }
 
-    private void Move()
-    {
-        anim.SetBool("isJump", false);
-        transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
-    }
-
-    private void BulletRainSpawn()
-    {
+        yield return new WaitForSeconds(0.8f);
         for (int i = 0; i < 10; i++)
         {
             int random = Random.Range(60, 120);
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
-    }
 
-    private void BulletRainStop()
-    {
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 10; i++)
+        {
+            int random = Random.Range(60, 120);
+
+            Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 10; i++)
+        {
+            int random = Random.Range(60, 120);
+
+            Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 10; i++)
+        {
+            int random = Random.Range(60, 120);
+
+            Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
+        }
+        anim.SetBool("isJump", false);
+        if (transform.position.x > 0)
+        {
+            transform.position = new Vector3(-21, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(21, transform.position.y, transform.position.z);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 10; i++)
+        {
+            int random = Random.Range(60, 120);
+
+            Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
+        }
+
+        yield return new WaitForSeconds(2.5f);
         bulletRainON = false;
-    }
 
+        yield return new WaitForSeconds(3.0f);
+        PatternStop();
+    } 
     private void PatternStop()
     {
         patternON = false;

@@ -10,16 +10,19 @@ public class Stage01Before : MonoBehaviour
     public int maxCount = 10;
 
     public GameObject hunter;
-    public GameObject smoke;
 
     public GameObject backgroundPanel;
     public GameObject playerPanel;
     public GameObject bossPanel;
 
+    public GameObject guardian;
+
     public Text playerText;
     public Text bossText;
 
     string[] talk;
+
+    private bool guardianMove = false;
 
     private bool player = false;
     private bool boss = false;
@@ -34,12 +37,20 @@ public class Stage01Before : MonoBehaviour
         playerText.text = "";
         bossText.text = "";
 
-        talk = new string[] { "첫번째 스크립트", "두번째 스크립트", "세번째 스크립트" , "네번째 스크립트" , "다섯번째 스크립트" ,
-        "여섯번째 스크립트","일곱번째 스크립트","여덟번째 스크립트","아홉번째 스크립트","열번째 스크립트"};
+        talk = new string[] { "헌터씨 여기서 뭐하시나요?",
+                              "! 뭐.... 	뭐야 너",
+                              "??" ,
+                              "너 다 알고 왔지?" ,
+                              "혹시?" ,
+                              "맞다! 내가 너의 스승의 위치를 현대무기들한테 알려줬지!",
+                              "예?",
+                              "??? 알고 온거 아니었나?",
+                              "아니요?",
+                              "...  전투다!"};
 
         GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeIn", true);
 
-        StartCoroutine(HunterIn());
+        StartCoroutine(PlayerIn());
     }
 
     void Update()
@@ -104,6 +115,17 @@ public class Stage01Before : MonoBehaviour
             playerPanel.SetActive(false);
             bossPanel.SetActive(false);
         }
+
+        if (guardianMove)
+        {
+            guardian.transform.position = Vector3.MoveTowards(guardian.transform.position, new Vector3(-5f, guardian.transform.position.y, guardian.transform.position.z), 10f * Time.deltaTime);
+        }
+
+        if (guardian.transform.position.x >= -5f)
+        {
+            guardian.GetComponent<Animator>().SetBool("isMove", false);
+            guardianMove = false;
+        }
     }
 
     IEnumerator TypingText(string s)
@@ -118,26 +140,30 @@ public class Stage01Before : MonoBehaviour
             if (player)
             {
                 playerText.text += letter;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
             else if (boss)
             {
                 bossText.text += letter;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
         }
 
         isTypingRuning = false;
     }
-    IEnumerator HunterIn()
+    IEnumerator PlayerIn()
     {
         yield return new WaitForSeconds(2.0f);
-        smoke.SetActive(true);
+        guardianMove = true;
+        guardian.GetComponent<Animator>().SetBool("isMove",true);
 
-        yield return new WaitForSeconds(0.4f);
-        hunter.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.0f);
+        GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
         countOn = true;
     }
     IEnumerator NextStage()

@@ -53,18 +53,17 @@ public class BossHunter : MonoBehaviour
                     case 1:
                     case 2:
                     case 3:
+                        StartCoroutine(Pattern_Shooting());
+                        break;
                     case 4:
                     case 5:
-                        Invoke("Pattern_Shooting", 0.5f);
-                        anim.SetBool("isAttack", true);
-                        break;
                     case 6:
                     case 7:
-                        Pattern_Shooting_Parry();
+                        StartCoroutine(Pattern_Shooting_Parry());
                         break;
                     case 8:
                     case 9:
-                        Pattern_Move();
+                        StartCoroutine(Pattern_Move());
                         break;
                 }
 
@@ -113,8 +112,10 @@ public class BossHunter : MonoBehaviour
         }
     }
 
-    private void Pattern_Shooting()
-    {
+    IEnumerator Pattern_Shooting() {
+        anim.SetBool("isAttack", true);
+
+        yield return new WaitForSeconds(0.5f);
         if (playercontroller.dirPos.x <= 0)
         {
             arrow.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -127,7 +128,7 @@ public class BossHunter : MonoBehaviour
         Instantiate(arrow, transform.position - new Vector3(0, 0.5f, 0), transform.rotation);
     }
 
-    private void Pattern_Shooting_Parry()
+    IEnumerator Pattern_Shooting_Parry()
     {
         GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(true);
 
@@ -141,51 +142,28 @@ public class BossHunter : MonoBehaviour
         {
             arrow_parry.transform.localScale = new Vector3(-2f, 2f, 2f);
         }
-        Invoke("ShootingAnim", 0.5f);
 
-        Invoke("ExclamationMarkOff", 0.7f);
-
-        Invoke("ArrowSpawn", 1f);
-
-        Invoke("PatternStop", 1f);
-    }
-
-    private void ShootingAnim()
-    {
+        yield return new WaitForSeconds(0.5f);
         anim.SetBool("isAttack", true);
-    }
 
-    private void ExclamationMarkOff()
-    {
+        yield return new WaitForSeconds(0.2f);
         GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(false);
-    }
-    private void ArrowSpawn()
-    {
+
+        yield return new WaitForSeconds(0.3f);
         Instantiate(arrow_parry, transform.position, transform.rotation);
+        PatternStop();
     }
 
-    public void Pattern_Move()
+    public IEnumerator Pattern_Move()
     {
         patternON = true;
-
         backstepON = true;
-
         Instantiate(smoke, transform.position, transform.rotation);
-
         anim.SetBool("isBackstep", true);
-        Invoke("BackstepStop", 0.5f);
 
-        Invoke("PositionChange", 0.5f);
-
-        Invoke("Move", 0.6f);
-
-        Invoke("MoveStop", 4f);
-
-        Invoke("PatternStop", 4.5f);
-    }
-
-    private void PositionChange()
-    {
+        yield return new WaitForSeconds(0.5f);
+        backstepON = false;
+        anim.SetBool("isBackstep", false);
         if (transform.position.x >= 0)
         {
             transform.position = targetLeft.transform.position;
@@ -194,23 +172,19 @@ public class BossHunter : MonoBehaviour
         {
             transform.position = targetRight.transform.position;
         }
-    }
 
-    private void Move()
-    {
+        yield return new WaitForSeconds(0.1f);
         anim.SetBool("isMove", true);
         moveON = true;
-    }
-    private void MoveStop()
-    {
+
+        yield return new WaitForSeconds(3.4f);
         anim.SetBool("isMove", false);
         moveON = false;
-    }
 
-    private void BackstepStop()
-    {
-        backstepON = false;
-        anim.SetBool("isBackstep", false);
+        yield return new WaitForSeconds(0.5f);
+        PatternStop();
+
+
     }
 
     private void PatternStop()

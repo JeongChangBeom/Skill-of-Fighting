@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer attackImg;
     public Sprite arrow;
     public Sprite bullet;
+    public Sprite razer;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            attackImg.sprite = bullet;
+            attackImg.sprite = razer;
         }
 
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -88,14 +89,14 @@ public class PlayerAttack : MonoBehaviour
             {
                 if(collision.gameObject.GetComponent<BossStatus>().bossHP > 1)
                 {
-                    bossHunter.Pattern_Move();
+                    bossHunter.StartCoroutine(bossHunter.Pattern_Move());
                 }
             }
             if(SceneManager.GetActiveScene().name == "Stage03")
             {
                 if (collision.gameObject.name == "Immortal_Arm_Left")
                 {
-                    if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP > 1)
+                    if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP > 0)
                     {
                         GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP--;
                     }
@@ -103,9 +104,17 @@ public class PlayerAttack : MonoBehaviour
 
                 if (collision.gameObject.name == "Immortal_Arm_Right")
                 {
-                    if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP > 1)
+                    if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP > 0)
                     {
                         GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP--;
+                    }
+                }
+
+                if(collision.gameObject.name == "Boss_Immortal")
+                {
+                    if(GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0)
+                    {
+                        GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP--;
                     }
                 }
             }
