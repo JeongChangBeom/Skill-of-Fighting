@@ -55,17 +55,17 @@ public class Fade : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Stage01")
         {
-            SceneManager.LoadScene("Stage02");
+            SceneManager.LoadScene("Stage01_After");
         }
 
         if (SceneManager.GetActiveScene().name == "Stage02")
         {
-            SceneManager.LoadScene("Stage03");
+            SceneManager.LoadScene("Stage02_After");
         }
 
         if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            SceneManager.LoadScene("Ending");
+            SceneManager.LoadScene("Stage03_After");
         }
     }
 }

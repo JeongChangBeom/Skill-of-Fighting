@@ -82,19 +82,19 @@ public class BossGunner : MonoBehaviour
 
             if (bulletRainON)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.04f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.02f);
             }
 
             if (!bulletRainON)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -6.2f, transform.position.z), 0.05f);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -6.05f, transform.position.z), 20 * Time.deltaTime);
             }
 
             if (snipingON)
             {
                 if (transform.position.x > 0)
                 {
-                    if(playercontroller.dirPos.x < 0)
+                    if (playercontroller.dirPos.x < 0)
                     {
                         transform.position = Vector3.Lerp(transform.position, new Vector3(30f, transform.position.y, transform.position.z), 0.1f);
                     }
@@ -152,7 +152,7 @@ public class BossGunner : MonoBehaviour
         patternON = true;
         float ran = Random.Range(0.5f, 1.5f);
         GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(true);
-        anim.SetBool("isSniping",true);
+        anim.SetBool("isSniping", true);
 
         yield return new WaitForSeconds(0.5f);
         GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(false);
@@ -166,7 +166,7 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         skid.SetActive(true);
         skid.transform.position = transform.position + new Vector3(0, -3.5f, 0);
-        skid.GetComponent<Animator>().SetBool("isSkid", true); 
+        skid.GetComponent<Animator>().SetBool("isSkid", true);
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
         snipingON = true;
 
@@ -210,9 +210,6 @@ public class BossGunner : MonoBehaviour
         patternON = true;
         anim.SetBool("isJump", true);
 
-        yield return new WaitForSeconds(0.7f);
-        bulletRainON = true;
-
         yield return new WaitForSeconds(0.8f);
         for (int i = 0; i < 10; i++)
         {
@@ -244,7 +241,6 @@ public class BossGunner : MonoBehaviour
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
-        anim.SetBool("isJump", false);
         if (transform.position.x > 0)
         {
             transform.position = new Vector3(-21, transform.position.y, transform.position.z);
@@ -267,10 +263,24 @@ public class BossGunner : MonoBehaviour
 
         yield return new WaitForSeconds(3.0f);
         PatternStop();
-    } 
+    }
     private void PatternStop()
     {
         patternON = false;
         anim.SetBool("isShooting", false);
     }
+
+    public void BulletRainOn()
+    {
+        bulletRainON = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            anim.SetBool("isJump", false);
+        }
+    }
+
 }

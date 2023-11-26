@@ -140,12 +140,12 @@ public class Stage01Before : MonoBehaviour
             if (player)
             {
                 playerText.text += letter;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
             else if (boss)
             {
                 bossText.text += letter;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
         }
 

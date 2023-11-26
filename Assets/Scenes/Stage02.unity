@@ -557,7 +557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3266947535861038852, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.2
+      value: -6.05
       objectReference: {fileID: 0}
     - target: {fileID: 3266947535861038852, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
       propertyPath: m_LocalPosition.z
@@ -639,19 +639,116 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7354592471721967474, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
+    - {fileID: 6734613697253253631, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
+    - {fileID: 5724722534650761400, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3266947535861038852, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
       insertIndex: -1
       addedObject: {fileID: 802243534}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2905082454318243510, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 231091438}
   m_SourcePrefab: {fileID: 100100000, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
 --- !u!4 &231091436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3266947535861038852, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
   m_PrefabInstance: {fileID: 231091435}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &231091437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2905082454318243510, guid: 00d5a98715aba7a48acf9817b12ac866, type: 3}
+  m_PrefabInstance: {fileID: 231091435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &231091438
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231091437}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.5, y: 12.5}
+    newSize: {x: 8, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.8125, y: -2.5625}
+      - {x: -0.375, y: -2.3125}
+      - {x: 0.25, y: -3.25}
+      - {x: 0.1875, y: -3.8125}
+      - {x: 0.375, y: -4.0625}
+      - {x: 1.25, y: -4.0625}
+      - {x: 1.5625, y: -3.8125}
+      - {x: 1.5625, y: -3.1875}
+      - {x: 1.375, y: -1}
+      - {x: 0.1875, y: -0.3125}
+      - {x: 1.3125, y: 0.25}
+      - {x: 2.6875, y: 0.5}
+      - {x: 4.1875, y: 0.375}
+      - {x: 4.3125, y: 0.8125}
+      - {x: 4.3125, y: 1.5625}
+      - {x: 4.125, y: 1.6875}
+      - {x: 2, y: 1.875}
+      - {x: 0.75, y: 2.5}
+      - {x: 0.125, y: 3.8125}
+      - {x: -1.0625, y: 3.8125}
+      - {x: -1.5, y: 3.125}
+      - {x: -2.6875, y: 1.9375}
+      - {x: -2.875, y: 1}
+      - {x: -2.875, y: -0.4375}
+      - {x: -2.5625, y: -0.5625}
+      - {x: -1.875, y: -0.4375}
+      - {x: -1.75, y: -0.25}
+      - {x: -1.9375, y: -0.625}
+      - {x: -2.625, y: -1.125}
+      - {x: -2.875, y: -2.5625}
+      - {x: -2.875, y: -4.125}
+      - {x: -1.5625, y: -4.125}
+      - {x: -1.5, y: -4}
+      - {x: -1.6875, y: -3.25}
+      - {x: -1.125, y: -2.875}
+    - - {x: -2.1875, y: 0.8125}
+      - {x: -2.125, y: 1}
+      - {x: -1.9375, y: 0.9375}
+      - {x: -2.1875, y: 0.6875}
+      - {x: -2.25, y: 0.5}
+      - {x: -2.1875, y: 0.5}
+  m_UseDelaunayMesh: 0
 --- !u!1 &279112464
 GameObject:
   m_ObjectHideFlags: 0
