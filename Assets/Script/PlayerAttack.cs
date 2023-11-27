@@ -67,12 +67,12 @@ public class PlayerAttack : MonoBehaviour
         {
             if (playercontroller.dir == 1)
             {
-                transform.localScale = new Vector3(2, 1, 1);
+                transform.localScale = new Vector3(4, 1, 1);
                 GetComponent<Rigidbody2D>().AddForce(transform.right * attackSpeed, ForceMode2D.Impulse);
             }
             else if (playercontroller.dir == -1)
             {
-                transform.localScale = new Vector3(-2, 1, 1);
+                transform.localScale = new Vector3(-4, 1, 1);
                 GetComponent<Rigidbody2D>().AddForce(transform.right * -attackSpeed, ForceMode2D.Impulse);
             }
         }
@@ -81,20 +81,20 @@ public class PlayerAttack : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("boss") || collision.gameObject.CompareTag("ImmortalArm"))
+        if (collider.gameObject.CompareTag("boss") || collider.gameObject.CompareTag("ImmortalArm"))
         {
-            if(collision.gameObject.name == "Boss_Hunter")
+            if(collider.gameObject.name == "Boss_Hunter")
             {
-                if(collision.gameObject.GetComponent<BossStatus>().bossHP > 1)
+                if(collider.gameObject.GetComponent<BossStatus>().bossHP > 1)
                 {
                     bossHunter.StartCoroutine(bossHunter.Pattern_Move());
                 }
             }
             if(SceneManager.GetActiveScene().name == "Stage03")
             {
-                if (collision.gameObject.name == "Immortal_Arm_Left")
+                if (collider.gameObject.name == "Immortal_Arm_Left")
                 {
                     if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP > 0)
                     {
@@ -102,7 +102,7 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
 
-                if (collision.gameObject.name == "Immortal_Arm_Right")
+                if (collider.gameObject.name == "Immortal_Arm_Right")
                 {
                     if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP > 0)
                     {
@@ -110,7 +110,7 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
 
-                if(collision.gameObject.name == "Boss_Immortal")
+                if(collider.gameObject.name == "Boss_Immortal")
                 {
                     if(GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0)
                     {
@@ -120,7 +120,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                collision.gameObject.GetComponent<BossStatus>().bossHP--;
+                collider.gameObject.GetComponent<BossStatus>().bossHP--;
             }
 
             Destroy(this.gameObject);

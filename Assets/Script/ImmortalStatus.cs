@@ -16,6 +16,8 @@ public class ImmortalStatus : MonoBehaviour
 
     private GameObject clearText;
 
+    public bool immortalDestroy = false;
+
     private void Start()
     {
         clearText = GameObject.Find("Canvas").transform.Find("ClearText").gameObject;
@@ -73,16 +75,25 @@ public class ImmortalStatus : MonoBehaviour
 
         if (mainHP <= 0)
         {
-            BossDie();
+            StartCoroutine(BossDie());
         }
 
         BossPosition();
     }
 
-    public void BossDie()
+    IEnumerator BossDie()
     {
-        clearText.SetActive(true);
+        GameObject.Find("Player").gameObject.layer = 8;
 
+        yield return new WaitForSeconds(2.0f);
+        GameObject.Find("Main Camera").transform.Find("Immortal_Destroy01").GetComponent<Animator>().SetBool("isDie", true);
+
+        yield return new WaitForSeconds(0.5f);
+        GameObject.FindWithTag("boss").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.FindWithTag("boss").transform.Find("Missile_Ready").GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(1.0f);
+        immortalDestroy = true;
     }
 
     public void BossPosition()

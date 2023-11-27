@@ -34,7 +34,7 @@ public class BossStatus : MonoBehaviour
     public void BossDie()
     {
         clearText.SetActive(true);
-
+        GameObject.Find("Player").gameObject.layer = 8;
     }
     
     public void BossPosition()

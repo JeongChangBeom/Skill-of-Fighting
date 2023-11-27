@@ -76,12 +76,12 @@ public class BossImmortal : MonoBehaviour
                             StartCoroutine(Pattern_Smash_Right());
                             break;
                         case 6:
-                        case 7:
                             if (!missileON)
                             {
                                 StartCoroutine(Pattern_Missile());
                             }
                             break;
+                        case 7:
                         case 8:
                         case 9:
                             if (!razerON)
@@ -98,21 +98,21 @@ public class BossImmortal : MonoBehaviour
                     {
                         case 0:
                         case 1:
-                        case 2:
                             StartCoroutine(Pattern_RocketPunch_Left());
                             break;
+                        case 2:
                         case 3:
-                        case 4:
-                        case 5:
                             StartCoroutine(Pattern_Smash_Left());
                             break;
-                        case 6:
-                        case 7:
+                        case 4:
+                        case 5:
                             if (!missileON)
                             {
                                 StartCoroutine(Pattern_Missile());
                             }
                             break;
+                        case 6:
+                        case 7:
                         case 8:
                         case 9:
                             if (!razerON)
@@ -128,21 +128,21 @@ public class BossImmortal : MonoBehaviour
                     {
                         case 0:
                         case 1:
-                        case 2:
                             StartCoroutine(Pattern_RocketPunch_Right());
                             break;
+                        case 2:
                         case 3:
-                        case 4:
-                        case 5:
                             StartCoroutine(Pattern_Smash_Right());
                             break;
-                        case 6:
-                        case 7:
+                        case 4:
+                        case 5:
                             if (!missileON)
                             {
                                 StartCoroutine(Pattern_Missile());
                             }
                             break;
+                        case 6:
+                        case 7:
                         case 8:
                         case 9:
                             if (!razerON)

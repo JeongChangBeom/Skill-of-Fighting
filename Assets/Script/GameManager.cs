@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public static bool Dotutorial = false;
 
+    public bool restartPress = false;
+
     public static GameManager instance
     {
         get
@@ -139,13 +141,16 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (restartPress)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            SceneManager.LoadScene("MainMenu");
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 

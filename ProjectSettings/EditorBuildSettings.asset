@@ -36,9 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage03.unity
     guid: 3c1ec36963b71d143b4f773777605d22
   - enabled: 1
-    path: Assets/Scenes/Stage03_After.unity
-    guid: 721aec5b3f3edf7459f0311e8f3b8a54
-  - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: 31e2824679e35a64c87b304868fd8e70
   - enabled: 1

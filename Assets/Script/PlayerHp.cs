@@ -44,5 +44,6 @@ public class PlayerHp : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(2.0f);
         GameObject.Find("Canvas").transform.Find("GameOverText").gameObject.SetActive(true);
+        GameManager.instance.restartPress = true;
     }
 }

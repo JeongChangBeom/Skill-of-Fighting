@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ScenarioGunner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Animator anim;
+
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        anim.SetBool("isJump", true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "ground")
+        {
+            anim.SetBool("isJump", false);
+        }
     }
 }

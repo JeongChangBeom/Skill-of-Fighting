@@ -50,7 +50,7 @@ public class Stage01Before : MonoBehaviour
 
         GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeIn", true);
 
-        StartCoroutine(PlayerIn());
+        StartCoroutine(ScenarioOn());
     }
 
     void Update()
@@ -121,7 +121,7 @@ public class Stage01Before : MonoBehaviour
             guardian.transform.position = Vector3.MoveTowards(guardian.transform.position, new Vector3(-5f, guardian.transform.position.y, guardian.transform.position.z), 10f * Time.deltaTime);
         }
 
-        if (guardian.transform.position.x >= -5f)
+        if (guardian.transform.position.x >= -5f && guardianMove)
         {
             guardian.GetComponent<Animator>().SetBool("isMove", false);
             guardianMove = false;
@@ -151,7 +151,7 @@ public class Stage01Before : MonoBehaviour
 
         isTypingRuning = false;
     }
-    IEnumerator PlayerIn()
+    IEnumerator ScenarioOn()
     {
         yield return new WaitForSeconds(2.0f);
         guardianMove = true;
@@ -167,7 +167,7 @@ public class Stage01Before : MonoBehaviour
         countOn = true;
     }
     IEnumerator NextStage()
-    {
+    { 
         yield return new WaitForSeconds(2.0f);
 
         SceneManager.LoadScene("Stage01");

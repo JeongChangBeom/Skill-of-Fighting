@@ -48,7 +48,7 @@ public class Stage02Before : MonoBehaviour
 
         GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeIn", true);
 
-        StartCoroutine(GunnerIn());
+        StartCoroutine(ScenarioOn());
     }
 
     void Update()
@@ -121,7 +121,7 @@ public class Stage02Before : MonoBehaviour
 
         if (gunnerMove)
         {
-            gunner.transform.position = Vector3.MoveTowards(gunner.transform.position, new Vector3(gunner.transform.position.x, -6.05f, guardian.transform.position.z), 40f * Time.deltaTime);
+            gunner.transform.position = Vector3.MoveTowards(gunner.transform.position, new Vector3(gunner.transform.position.x, -6.2f, guardian.transform.position.z), 40f * Time.deltaTime);
         }
     }
 
@@ -148,9 +148,9 @@ public class Stage02Before : MonoBehaviour
 
         isTypingRuning = false;
     }
-    IEnumerator GunnerIn()
+    IEnumerator ScenarioOn()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
 
         yield return new WaitForSeconds(0.1f);
@@ -164,7 +164,7 @@ public class Stage02Before : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         gunnerMove = true;
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         countOn = true;
 
     }

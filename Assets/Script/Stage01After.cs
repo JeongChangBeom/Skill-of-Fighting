@@ -20,7 +20,7 @@ public class Stage01After : MonoBehaviour
 
     string[] talk;
 
-    private bool guardianMove = false;
+    private bool guardianExit = false;
 
     private bool player = false;
     private bool boss = false;
@@ -36,9 +36,9 @@ public class Stage01After : MonoBehaviour
         bossText.text = "";
 
         talk = new string[] { "어쨰서 그런 짓을 하신것이죠?",
-                              "나는....	   		전통무기이기 싫었다!",
+                              "나는.... 전통무기이기 싫었다!",
                               "예?" ,
-                              "현대 무기 측에서 나에게 얘기하더군 \n너희 전통무기의 수장의 이름과 위치를 알려준다면 \n나를 현대무기에 껴주겠다고" ,
+                              "현대 무기 측에서 얘기하더군 \n너희 전통무기의 수장의 이름과 위치를 알려준다면 \n나를 현대무기에 껴주겠다고" ,
                               "어째서 현대 무기가 되고 싶으셨던 거에요?" ,
                               "너무 구닥다리이지 않나 새시대를 살아가고 싶었을 뿐이지.",
                               "....",
@@ -47,14 +47,13 @@ public class Stage01After : MonoBehaviour
 
         GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeIn", true);
 
-        StartCoroutine(PlayerIn());
+        StartCoroutine(ScenarioOn());
     }
 
     void Update()
     {
         if (textCount >= maxCount)
-        {
-            GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeOut", true);
+        {  
             StartCoroutine(NextStage());
         }
 
@@ -113,15 +112,9 @@ public class Stage01After : MonoBehaviour
             bossPanel.SetActive(false);
         }
 
-        if (guardianMove)
+        if (guardianExit)
         {
-            guardian.transform.position = Vector3.MoveTowards(guardian.transform.position, new Vector3(-5f, guardian.transform.position.y, guardian.transform.position.z), 10f * Time.deltaTime);
-        }
-
-        if (guardian.transform.position.x >= -5f)
-        {
-            guardian.GetComponent<Animator>().SetBool("isMove", false);
-            guardianMove = false;
+            guardian.transform.position = Vector3.MoveTowards(guardian.transform.position, new Vector3(40f, guardian.transform.position.y, guardian.transform.position.z), 10f * Time.deltaTime);
         }
     }
 
@@ -148,13 +141,21 @@ public class Stage01After : MonoBehaviour
 
         isTypingRuning = false;
     }
-    IEnumerator PlayerIn()
+    IEnumerator ScenarioOn()
     {
         yield return new WaitForSeconds(2.0f);
         countOn = true;
     }
     IEnumerator NextStage()
     {
+        guardianExit = true;
+        countOn = false;
+        guardian.GetComponent<Animator>().SetBool("isMove", true);
+
+        yield return new WaitForSeconds(3.0f);
+
+        GameObject.Find("Canvas").GetComponent<Animator>().SetBool("FadeOut", true);
+
         yield return new WaitForSeconds(2.0f);
 
         SceneManager.LoadScene("Stage02_Before");

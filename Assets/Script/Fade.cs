@@ -24,7 +24,7 @@ public class Fade : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP <= 0)
+            if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().immortalDestroy)
             {
                 Invoke("FadeOut", 2.0f);
 
@@ -65,7 +65,7 @@ public class Fade : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            SceneManager.LoadScene("Stage03_After");
+            SceneManager.LoadScene("Ending");
         }
     }
 }

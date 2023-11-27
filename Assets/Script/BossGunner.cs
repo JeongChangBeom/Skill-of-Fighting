@@ -82,12 +82,12 @@ public class BossGunner : MonoBehaviour
 
             if (bulletRainON)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.02f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 40f, transform.position.z), 0.03f);
             }
 
             if (!bulletRainON)
             {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -6.05f, transform.position.z), 20 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -6.05f, transform.position.z), 30 * Time.deltaTime);
             }
 
             if (snipingON)
@@ -275,9 +275,9 @@ public class BossGunner : MonoBehaviour
         bulletRainON = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collider.gameObject.tag == "ground")
         {
             anim.SetBool("isJump", false);
         }
