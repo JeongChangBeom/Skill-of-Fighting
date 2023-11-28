@@ -164,7 +164,7 @@ public class Stage02Before : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         gunnerMove = true;
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
         countOn = true;
 
     }

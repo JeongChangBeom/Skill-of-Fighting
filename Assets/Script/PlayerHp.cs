@@ -22,13 +22,13 @@ public class PlayerHp : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Stage03")
         {
-            GameObject.Find("Canvas").transform.Find("BossHp").gameObject.SetActive(false);
+            GameObject.Find("Canvas").transform.Find("BossHP").gameObject.SetActive(false);
             GameObject.Find("Canvas").transform.Find("LeftArmHp").gameObject.SetActive(false);
             GameObject.Find("Canvas").transform.Find("RightArmHp").gameObject.SetActive(false);
         }
         else
         {
-            GameObject.Find("Canvas").transform.Find("BossHp").gameObject.SetActive(false);
+            GameObject.Find("Canvas").transform.Find("BossHP").gameObject.SetActive(false);
         }
         GameObject.Find("Canvas").transform.Find("PauseText").gameObject.SetActive(false);
         GameObject.Find("Canvas").transform.Find("BossName").gameObject.SetActive(false);

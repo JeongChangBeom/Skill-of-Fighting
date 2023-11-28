@@ -41,6 +41,7 @@ public class Button : MonoBehaviour
 
     public void OnMouseEnter()
     {
+        SoundManager.instance.ButtonMouseOn_Sound();
         if (gameObject.name == "OptionButton")
         {
             transform.localScale = transform.localScale + new Vector3(0.1f, 0.5f, 0.5f);

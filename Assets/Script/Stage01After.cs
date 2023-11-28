@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Stage01After : MonoBehaviour
 {
     public int textCount = 0;
-    public int maxCount = 10;
+    public int maxCount = 8;
 
     public GameObject backgroundPanel;
     public GameObject playerPanel;
@@ -27,6 +27,7 @@ public class Stage01After : MonoBehaviour
 
     private bool countOn = false;
     private bool typing = false;
+    private bool shakeOn = false;
 
     private bool isTypingRuning = false;
 
@@ -116,6 +117,11 @@ public class Stage01After : MonoBehaviour
         {
             guardian.transform.position = Vector3.MoveTowards(guardian.transform.position, new Vector3(40f, guardian.transform.position.y, guardian.transform.position.z), 10f * Time.deltaTime);
         }
+
+        if(textCount == 1 && !shakeOn)
+        {
+            StartCoroutine(Shake());
+        }
     }
 
     IEnumerator TypingText(string s)
@@ -159,5 +165,25 @@ public class Stage01After : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         SceneManager.LoadScene("Stage02_Before");
+    }
+
+    public IEnumerator Shake()
+    {
+        shakeOn = true;
+        Transform cam = GameObject.FindWithTag("Player").transform.Find("Main Camera").gameObject.transform;
+
+        Vector3 originPosition = cam.localPosition;
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < 0.5)
+        {
+            Vector3 randomPoint = originPosition + Random.insideUnitSphere * 20.0f;
+            cam.localPosition = Vector3.Lerp(cam.localPosition, randomPoint, Time.deltaTime * 8.0f);
+
+            yield return null;
+
+            elapsedTime += Time.deltaTime;
+        }
+        cam.localPosition = originPosition;
     }
 }

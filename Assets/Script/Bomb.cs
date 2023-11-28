@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
     {
         playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
-        attackSpeed = Random.Range(5, 15);
+        attackSpeed = Random.Range(5, 18);
 
         if (playercontroller.dirPos.x <= 0)
         {

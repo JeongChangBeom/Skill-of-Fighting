@@ -17,6 +17,8 @@ public class Stage03Before : MonoBehaviour
     public GameObject ground1;
     public GameObject ground2;
 
+    public Sprite Immortal_redeyes;
+
     public Text playerText;
     public Text bossText;
 
@@ -113,6 +115,11 @@ public class Stage03Before : MonoBehaviour
             playerPanel.SetActive(false);
             bossPanel.SetActive(false);
         }
+
+        if(textCount == 8)
+        {
+            GameObject.Find("Canvas").transform.Find("BackGroundPanel/BossText/CharacterImage").GetComponent<Image>().sprite = Immortal_redeyes;
+        }
     }
 
     IEnumerator TypingText(string s)
@@ -145,10 +152,12 @@ public class Stage03Before : MonoBehaviour
         ground2.GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.1f);
         guardian.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 32f, ForceMode2D.Impulse);
+        guardian.GetComponent<Animator>().SetBool("isJump", true);
 
         yield return new WaitForSeconds(0.5f);
         ground1.GetComponent<BoxCollider2D>().enabled = true;
         ground2.GetComponent<BoxCollider2D>().enabled = true;
+        guardian.GetComponent<Animator>().SetBool("isJump", false);
 
         yield return new WaitForSeconds(1.5f);
         guardian.transform.Find("ExclamationMark").gameObject.SetActive(true);

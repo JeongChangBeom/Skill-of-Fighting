@@ -14,15 +14,17 @@ public class ImmortalStatus : MonoBehaviour
     private GameObject leftArm;
     private GameObject rightArm;
 
-    private GameObject clearText;
-
     public bool immortalDestroy = false;
+
+    private bool immortaldie = false;
+
+    CameraController cameracontroller;
 
     private void Start()
     {
-        clearText = GameObject.Find("Canvas").transform.Find("ClearText").gameObject;
         leftArm = GameObject.FindWithTag("boss").transform.Find("Immortal_Arm_Left").gameObject;
         rightArm = GameObject.FindWithTag("boss").transform.Find("Immortal_Arm_Right").gameObject;
+        cameracontroller = GameObject.Find("Main Camera").GetComponent<CameraController>();
     }
     private void Update()
     {
@@ -48,7 +50,8 @@ public class ImmortalStatus : MonoBehaviour
 
         if(leftarmHP <= 0)
         {
-            leftArm.SetActive(false);
+            leftArm.GetComponent<Animator>().SetBool("isDestroy", true);
+            Invoke("LeftArmDestroy", 2.0f);
         }
         else
         {
@@ -57,7 +60,8 @@ public class ImmortalStatus : MonoBehaviour
 
         if (rightarmHP <= 0)
         {
-            rightArm.SetActive(false);
+            rightArm.GetComponent<Animator>().SetBool("isDestroy", true);
+            Invoke("RightArmDestroy", 2.0f);
         }
         else
         {
@@ -73,7 +77,7 @@ public class ImmortalStatus : MonoBehaviour
             GameObject.FindWithTag("boss").GetComponent<PolygonCollider2D>().enabled = false;
         }
 
-        if (mainHP <= 0)
+        if (mainHP <= 0 && !immortaldie)
         {
             StartCoroutine(BossDie());
         }
@@ -81,12 +85,36 @@ public class ImmortalStatus : MonoBehaviour
         BossPosition();
     }
 
+    private void LeftArmDestroy()
+    {
+        leftArm.SetActive(true);
+    }
+
+    private void RightArmDestroy()
+    {
+        rightArm.SetActive(false);
+    }
+
     IEnumerator BossDie()
     {
+        immortaldie = true;
+
         GameObject.Find("Player").gameObject.layer = 8;
 
-        yield return new WaitForSeconds(2.0f);
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
+
+        yield return new WaitForSeconds(0.5f);
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
+
+        yield return new WaitForSeconds(0.5f);
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
+
+        yield return new WaitForSeconds(0.5f);
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
         GameObject.Find("Main Camera").transform.Find("Immortal_Destroy01").GetComponent<Animator>().SetBool("isDie", true);
+
+        yield return new WaitForSeconds(0.5f);
+        cameracontroller.StartCoroutine(cameracontroller.Shake());
 
         yield return new WaitForSeconds(0.5f);
         GameObject.FindWithTag("boss").GetComponent<SpriteRenderer>().enabled = false;

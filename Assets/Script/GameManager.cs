@@ -8,10 +8,6 @@ public class GameManager : MonoBehaviour
 {
     private PlayerController playerController;
 
-    private Slider hpBar;
-    public Slider leftarmhpBar;
-    public Slider rightarmhpBar;
-
     private Image backStep;
     private Text backStep_text;
 
@@ -60,7 +56,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        hpBar = GameObject.Find("Canvas").transform.Find("BossHp").GetComponent<Slider>();
         backStep = GameObject.Find("Canvas").transform.Find("BackStep_Image").GetComponent<Image>();
         parry = GameObject.Find("Canvas").transform.Find("Parry_Image").GetComponent<Image>();
         backStep_text = GameObject.Find("Canvas").transform.Find("BackStep_Image/BackStep_CoolDown").GetComponent<Text>();
@@ -76,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        BossHpBar();
         if (SceneManager.GetActiveScene().name == "Stage03")
         {
             if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP > 0)
@@ -179,72 +173,6 @@ public class GameManager : MonoBehaviour
         {
             parry.color = Color.black;
             parry_text.GetComponent<Text>().text = ((int)playerController.parryCooldown) + 1 + "";
-        }
-    }
-
-    private void BossHpBar()
-    {
-        if (SceneManager.GetActiveScene().name == "Stage03")
-        {
-            if (!playerHp.isDead)
-            {
-                if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0)
-                {
-                    hpBar.gameObject.SetActive(true);
-                    leftarmhpBar.gameObject.SetActive(false);
-                    rightarmhpBar.gameObject.SetActive(false);
-                }
-                else
-                {
-                    hpBar.gameObject.SetActive(false);
-                    leftarmhpBar.gameObject.SetActive(true);
-                    rightarmhpBar.gameObject.SetActive(true);
-                }
-            }
-
-            hpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP;
-            leftarmhpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP;
-            rightarmhpBar.value = GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP;
-
-            if (hpBar.value <= 0)
-            {
-                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(false);
-            }
-            else
-            {
-                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(true);
-            }
-
-            if (leftarmhpBar.value <= 0)
-            {
-                GameObject.Find("Canvas").transform.Find("LeftArmHp/Fill Area").gameObject.SetActive(false);
-            }
-            else
-            {
-                GameObject.Find("Canvas").transform.Find("LeftArmHp/Fill Area").gameObject.SetActive(true);
-            }
-
-            if (rightarmhpBar.value <= 0)
-            {
-                GameObject.Find("Canvas").transform.Find("RightArmHp/Fill Area").gameObject.SetActive(false);
-            }
-            else
-            {
-                GameObject.Find("Canvas").transform.Find("RightArmHp/Fill Area").gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            hpBar.value = bossStatus.bossHP;
-
-            if (hpBar.value <= 0)
-            {
-                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(false);
-            }
-            else
-            {
-                GameObject.Find("Canvas").transform.Find("BossHp/Fill Area").gameObject.SetActive(true); ;
-            }
         }
     }
 }

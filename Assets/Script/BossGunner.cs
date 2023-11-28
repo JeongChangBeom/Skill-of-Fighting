@@ -58,22 +58,19 @@ public class BossGunner : MonoBehaviour
                     case 1:
                     case 2:
                     case 3:
-                        StartCoroutine(Pattern_Shooting_Parry());
-                        //StartCoroutine(Pattern_Shooting());
+                        StartCoroutine(Pattern_Shooting());
                         break;
                     case 4:
                     case 5:
-                        StartCoroutine(Pattern_Shooting_Parry());
-                        break;
                     case 6:
-                    case 7:
                         StartCoroutine(Pattern_Shooting_Parry());
-                        //StartCoroutine(Pattern_Bomb());
                         break;
+                    case 7:
                     case 8:
+                        StartCoroutine(Pattern_Bomb());
+                        break;
                     case 9:
-                        StartCoroutine(Pattern_Shooting_Parry());
-                        // StartCoroutine(Pattern_BulletRain());
+                        StartCoroutine(Pattern_BulletRain());
                         break;
                 }
 
@@ -213,7 +210,7 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         for (int i = 0; i < 10; i++)
         {
-            int random = Random.Range(60, 120);
+            int random = Random.Range(50, 130);
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
@@ -221,7 +218,7 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < 10; i++)
         {
-            int random = Random.Range(60, 120);
+            int random = Random.Range(50, 130);
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
@@ -229,7 +226,7 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < 10; i++)
         {
-            int random = Random.Range(60, 120);
+            int random = Random.Range(50, 130);
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
@@ -237,10 +234,11 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < 10; i++)
         {
-            int random = Random.Range(60, 120);
+            int random = Random.Range(50, 130);
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
+
         if (transform.position.x > 0)
         {
             transform.position = new Vector3(-21, transform.position.y, transform.position.z);
@@ -253,7 +251,7 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < 10; i++)
         {
-            int random = Random.Range(60, 120);
+            int random = Random.Range(50, 130);
 
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }

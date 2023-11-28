@@ -15,7 +15,6 @@ public class BulletGun : MonoBehaviour
     }
     void Update()
     {
-
         if(playercontroller.dirPos.x <= 0 && SceneManager.GetActiveScene().name != "Stage03")
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
