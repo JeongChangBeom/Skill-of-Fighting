@@ -197,12 +197,15 @@ public class BossImmortal : MonoBehaviour
     {
         patternON = true;
         Left_Arm_anim.SetBool("isPunch", true);
+        SoundManager.instance.Punch01_Sound();
 
         yield return new WaitForSeconds(0.5f);
         Instantiate(armLeft, armLeft.transform.position, armLeft.transform.rotation);
+        SoundManager.instance.Punch02_Sound();
 
         yield return new WaitForSeconds(1.5f);
         Left_Arm_anim.SetBool("isPunch", false);
+        SoundManager.instance.Punch01_Sound();
 
         yield return new WaitForSeconds(1.0f);
         PatternStop();
@@ -212,12 +215,15 @@ public class BossImmortal : MonoBehaviour
     {
         patternON = true;
         Right_Arm_anim.SetBool("isPunch", true);
+        SoundManager.instance.Punch01_Sound();
 
         yield return new WaitForSeconds(0.5f);
         Instantiate(armRight, armRight.transform.position, armRight.transform.rotation);
+        SoundManager.instance.Punch02_Sound();
 
         yield return new WaitForSeconds(1.5f);
         Right_Arm_anim.SetBool("isPunch", false);
+        SoundManager.instance.Punch01_Sound();
 
         yield return new WaitForSeconds(1.0f);
         PatternStop();
@@ -230,6 +236,7 @@ public class BossImmortal : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         Instantiate(smashEff, new Vector3(-5.5f, -10f, 0f), smashEff.transform.rotation);
+        SoundManager.instance.Smash_Sound();
         cameracontroller.StartCoroutine(cameracontroller.Shake());
 
         yield return new WaitForSeconds(0.5f);
@@ -246,6 +253,7 @@ public class BossImmortal : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         Instantiate(smashEff, new Vector3(5.5f, -10f, 0f), smashEff.transform.rotation);
+        SoundManager.instance.Smash_Sound();
         cameracontroller.StartCoroutine(cameracontroller.Shake());
 
         yield return new WaitForSeconds(0.5f);
@@ -258,6 +266,7 @@ public class BossImmortal : MonoBehaviour
     IEnumerator Pattern_Missile()
     {
         missileON = true;
+        SoundManager.instance.MissileBefore_Sound();
 
         if (missileON)
         {
@@ -276,9 +285,11 @@ public class BossImmortal : MonoBehaviour
         if (razerON)
         {
             sp.sprite = immortal_razer;
+            SoundManager.instance.RaserBefore_Sound();
 
             yield return new WaitForSeconds(0.5f);
             Instantiate(razer, RazerTarget.transform.position, RazerTarget.transform.rotation);
+            SoundManager.instance.Raser_Sound();
 
             yield return new WaitForSeconds(0.1f);
             sp.sprite = immortal;

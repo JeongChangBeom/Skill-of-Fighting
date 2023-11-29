@@ -26,6 +26,7 @@ public class Stage02Before : MonoBehaviour
 
     private bool guardianMove = false;
     private bool gunnerMove = false;
+    private bool shakeOn = false;
 
     private bool player = false;
     private bool boss = false;
@@ -34,6 +35,8 @@ public class Stage02Before : MonoBehaviour
     private bool typing = false;
 
     private bool isTypingRuning = false;
+
+    private int textAmount = 0;
 
     void Start()
     {
@@ -92,7 +95,7 @@ public class Stage02Before : MonoBehaviour
                 boss = false;
             }
 
-            if (textCount < maxCount)
+            if (textCount < maxCount && countOn)
             {
                 StartCoroutine(TypingText(talk[textCount]));
             }
@@ -123,6 +126,12 @@ public class Stage02Before : MonoBehaviour
         {
             gunner.transform.position = Vector3.MoveTowards(gunner.transform.position, new Vector3(gunner.transform.position.x, -6.2f, guardian.transform.position.z), 40f * Time.deltaTime);
         }
+
+        if (textCount == 2 && !shakeOn)
+        {
+            StartCoroutine(Shake());
+            SoundManager.instance.Shake_Sound();
+        }
     }
 
     IEnumerator TypingText(string s)
@@ -131,9 +140,14 @@ public class Stage02Before : MonoBehaviour
         isTypingRuning = true;
         playerText.text = "";
         bossText.text = "";
+        textAmount = 0;
 
         foreach (char letter in s.ToCharArray())
         {
+            if (textAmount == 0 || textAmount % 3 == 0)
+            {
+                SoundManager.instance.Key_Sound();
+            }
             if (player)
             {
                 playerText.text += letter;
@@ -144,6 +158,7 @@ public class Stage02Before : MonoBehaviour
                 bossText.text += letter;
                 yield return new WaitForSeconds(0.02f);
             }
+            textAmount++;
         }
 
         isTypingRuning = false;
@@ -152,6 +167,7 @@ public class Stage02Before : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
+        SoundManager.instance.SnipeShoot_Sound();
 
         yield return new WaitForSeconds(0.1f);
         guardianMove = true;
@@ -168,6 +184,26 @@ public class Stage02Before : MonoBehaviour
         countOn = true;
 
     }
+    public IEnumerator Shake()
+    {
+        shakeOn = true;
+        Transform cam = GameObject.Find("Main Camera").gameObject.transform;
+
+        Vector3 originPosition = cam.localPosition;
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < 0.5)
+        {
+            Vector3 randomPoint = originPosition + Random.insideUnitSphere * 20.0f;
+            cam.localPosition = Vector3.Lerp(cam.localPosition, randomPoint, Time.deltaTime * 8.0f);
+
+            yield return null;
+
+            elapsedTime += Time.deltaTime;
+        }
+        cam.localPosition = originPosition;
+    }
+
     IEnumerator NextStage()
     {
         yield return new WaitForSeconds(2.0f);

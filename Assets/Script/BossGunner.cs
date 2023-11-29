@@ -13,6 +13,7 @@ public class BossGunner : MonoBehaviour
     private bool patternON = false;
     private bool bulletRainON = false;
     private bool snipingON = false;
+    private int groundCollider = 0;
 
     public GameObject bullet;
     public GameObject bullet_parry;
@@ -132,6 +133,7 @@ public class BossGunner : MonoBehaviour
         patternON = true;
         anim.SetBool("isShooting", true);
 
+        SoundManager.instance.Shoot_Sound();
         Instantiate(bullet, bulletGun.transform.position, bulletGun.transform.rotation);
 
         yield return new WaitForSeconds(0.2f);
@@ -149,6 +151,7 @@ public class BossGunner : MonoBehaviour
         patternON = true;
         float ran = Random.Range(0.5f, 1.5f);
         GameObject.Find("Boss_Gunner").transform.Find("ExclamationMark").gameObject.SetActive(true);
+        SoundManager.instance.StageExclamationMarkOn_Sound();
         anim.SetBool("isSniping", true);
 
         yield return new WaitForSeconds(0.5f);
@@ -156,6 +159,7 @@ public class BossGunner : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(true);
+        SoundManager.instance.SnipeLoad_Sound();
 
         yield return new WaitForSeconds(ran);
         GameObject.FindWithTag("Player").transform.Find("Aim").gameObject.SetActive(false);
@@ -165,6 +169,7 @@ public class BossGunner : MonoBehaviour
         skid.transform.position = transform.position + new Vector3(0, -3.5f, 0);
         skid.GetComponent<Animator>().SetBool("isSkid", true);
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
+        SoundManager.instance.SnipeShoot_Sound();
         snipingON = true;
 
         yield return new WaitForSeconds(0.3f);
@@ -186,18 +191,23 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         anim.SetBool("isGrander", false);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+        SoundManager.instance.Grenade_Sound();
 
         yield return new WaitForSeconds(0.1f);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+        SoundManager.instance.Grenade_Sound();
 
         yield return new WaitForSeconds(0.1f);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+        SoundManager.instance.Grenade_Sound();
 
         yield return new WaitForSeconds(0.1f);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+        SoundManager.instance.Grenade_Sound();
 
         yield return new WaitForSeconds(0.1f);
         Instantiate(bomb, bombGun.transform.position, bombGun.transform.rotation);
+        SoundManager.instance.Grenade_Sound();
 
         PatternStop();
     }
@@ -208,6 +218,7 @@ public class BossGunner : MonoBehaviour
         anim.SetBool("isJump", true);
 
         yield return new WaitForSeconds(0.8f);
+        Invoke("PlayRandomShootSound", 1f);
         for (int i = 0; i < 10; i++)
         {
             int random = Random.Range(50, 130);
@@ -216,6 +227,7 @@ public class BossGunner : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+        Invoke("PlayRandomShootSound", 1f);
         for (int i = 0; i < 10; i++)
         {
             int random = Random.Range(50, 130);
@@ -224,6 +236,7 @@ public class BossGunner : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+        Invoke("PlayRandomShootSound", 1f);
         for (int i = 0; i < 10; i++)
         {
             int random = Random.Range(50, 130);
@@ -231,7 +244,9 @@ public class BossGunner : MonoBehaviour
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
 
+
         yield return new WaitForSeconds(0.5f);
+        Invoke("PlayRandomShootSound", 1f);
         for (int i = 0; i < 10; i++)
         {
             int random = Random.Range(50, 130);
@@ -248,7 +263,9 @@ public class BossGunner : MonoBehaviour
             transform.position = new Vector3(21, transform.position.y, transform.position.z);
         }
 
+
         yield return new WaitForSeconds(0.5f);
+        Invoke("PlayRandomShootSound", 1f);
         for (int i = 0; i < 10; i++)
         {
             int random = Random.Range(50, 130);
@@ -256,11 +273,17 @@ public class BossGunner : MonoBehaviour
             Instantiate(bullet, bulletRain.transform.position, Quaternion.Euler(new Vector3(0, 0, -random)));
         }
 
+
         yield return new WaitForSeconds(2.5f);
         bulletRainON = false;
 
         yield return new WaitForSeconds(3.0f);
         PatternStop();
+    }
+
+    private void PlayRandomShootSound()
+    {
+        SoundManager.instance.RandomShoot_Sound();
     }
     private void PatternStop()
     {
@@ -277,6 +300,12 @@ public class BossGunner : MonoBehaviour
     {
         if(collider.gameObject.tag == "ground")
         {
+            if (groundCollider > 0)
+            {
+                SoundManager.instance.Land_Sound();
+            }
+            groundCollider++;
+
             anim.SetBool("isJump", false);
         }
     }

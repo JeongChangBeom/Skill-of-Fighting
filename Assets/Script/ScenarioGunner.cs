@@ -16,6 +16,7 @@ public class ScenarioGunner : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
         {
+            SoundManager.instance.Land_Sound();
             anim.SetBool("isJump", false);
         }
     }

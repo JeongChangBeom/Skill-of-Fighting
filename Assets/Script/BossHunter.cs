@@ -126,10 +126,12 @@ public class BossHunter : MonoBehaviour
 
         }
         Instantiate(arrow, transform.position - new Vector3(0, 0.5f, 0), transform.rotation);
+        SoundManager.instance.Arrow_Sound();
     }
 
     IEnumerator Pattern_Shooting_Parry()
     {
+        SoundManager.instance.StageExclamationMarkOn_Sound();
         GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(true);
 
         patternON = true;
@@ -151,6 +153,7 @@ public class BossHunter : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
         Instantiate(arrow_parry, transform.position, transform.rotation);
+        SoundManager.instance.ParryArrow_Sound();
         PatternStop();
     }
 
@@ -160,6 +163,7 @@ public class BossHunter : MonoBehaviour
         backstepON = true;
         Instantiate(smoke, transform.position, transform.rotation);
         anim.SetBool("isBackstep", true);
+        SoundManager.instance.Smoke_Sound();
 
         yield return new WaitForSeconds(0.5f);
         backstepON = false;

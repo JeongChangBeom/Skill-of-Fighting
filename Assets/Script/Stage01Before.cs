@@ -32,6 +32,8 @@ public class Stage01Before : MonoBehaviour
 
     private bool isTypingRuning = false;
 
+    private int textAmount = 0;
+
     void Start()
     {
         playerText.text = "";
@@ -94,7 +96,7 @@ public class Stage01Before : MonoBehaviour
                 boss = false;
             }
 
-            if(textCount < maxCount)
+            if(textCount < maxCount && countOn)
             {
                 StartCoroutine(TypingText(talk[textCount]));
             }
@@ -134,9 +136,14 @@ public class Stage01Before : MonoBehaviour
         isTypingRuning = true;
         playerText.text = "";
         bossText.text = "";
+        textAmount = 0;
 
         foreach (char letter in s.ToCharArray())
         {
+            if (textAmount == 0 || textAmount % 3 == 0)
+            {
+                SoundManager.instance.Key_Sound();
+            }
             if (player)
             {
                 playerText.text += letter;
@@ -147,6 +154,7 @@ public class Stage01Before : MonoBehaviour
                 bossText.text += letter;
                 yield return new WaitForSeconds(0.02f);
             }
+            textAmount++;
         }
 
         isTypingRuning = false;
@@ -159,6 +167,7 @@ public class Stage01Before : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
         GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(true);
+        SoundManager.instance.ExclamationMarkOn_Sound();
 
         yield return new WaitForSeconds(1.0f);
         GameObject.Find("Boss_Hunter").transform.Find("ExclamationMark").gameObject.SetActive(false);

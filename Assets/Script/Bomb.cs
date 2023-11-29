@@ -36,6 +36,7 @@ public class Bomb : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         Instantiate(explosion, transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+        SoundManager.instance.Bomb_Sound();
     }
 
     private void DestroyBomb()

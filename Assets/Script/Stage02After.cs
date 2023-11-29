@@ -35,6 +35,8 @@ public class Stage02After : MonoBehaviour
     private bool isTypingRuning = false;
     private bool isCoroutine = false;
 
+    private int textAmount = 0;
+
     void Start()
     {
         playerText.text = "";
@@ -98,7 +100,7 @@ public class Stage02After : MonoBehaviour
                 boss = false;
             }
 
-            if (textCount < maxCount)
+            if (textCount < maxCount && countOn)
             {
                 StartCoroutine(TypingText(talk[textCount]));
             }
@@ -132,9 +134,14 @@ public class Stage02After : MonoBehaviour
         isTypingRuning = true;
         playerText.text = "";
         bossText.text = "";
+        textAmount = 0;
 
         foreach (char letter in s.ToCharArray())
         {
+            if (textAmount == 0 || textAmount % 3 == 0)
+            {
+                SoundManager.instance.Key_Sound();
+            }
             if (player)
             {
                 playerText.text += letter;
@@ -145,6 +152,7 @@ public class Stage02After : MonoBehaviour
                 bossText.text += letter;
                 yield return new WaitForSeconds(0.02f);
             }
+            textAmount++;
         }
 
         isTypingRuning = false;
@@ -163,9 +171,11 @@ public class Stage02After : MonoBehaviour
         guardian.GetComponent<Animator>().SetBool("isMove", true);
 
         yield return new WaitForSeconds(4.0f);
+        SoundManager.instance.BombDrop_Sound();
         boom.SetActive(true);
 
         yield return new WaitForSeconds(2.5f);
+        SoundManager.instance.Bomb_Sound();
         boom.SetActive(false);
         gunner.SetActive(false);
         eff1.SetActive(true);

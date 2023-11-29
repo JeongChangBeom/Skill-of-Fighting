@@ -16,7 +16,7 @@ public class Missile : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             ExplosionMissile();
-            Invoke("DestroyMissile", 1.0f);
+            Invoke("DestroyMissile", 0.1f);
         }
     }
 
@@ -24,6 +24,7 @@ public class Missile : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         Instantiate(explosion, transform.position - new Vector3(0, 5, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+        SoundManager.instance.Missile_Sound();
     }
 
     private void DestroyMissile()

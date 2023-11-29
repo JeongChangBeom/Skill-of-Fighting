@@ -31,6 +31,8 @@ public class Stage01After : MonoBehaviour
 
     private bool isTypingRuning = false;
 
+    private int textAmount = 0;
+
     void Start()
     {
         playerText.text = "";
@@ -91,7 +93,7 @@ public class Stage01After : MonoBehaviour
                 boss = false;
             }
 
-            if (textCount < maxCount)
+            if (textCount < maxCount && countOn)
             {
                 StartCoroutine(TypingText(talk[textCount]));
             }
@@ -121,6 +123,7 @@ public class Stage01After : MonoBehaviour
         if(textCount == 1 && !shakeOn)
         {
             StartCoroutine(Shake());
+            SoundManager.instance.Shake_Sound();
         }
     }
 
@@ -130,9 +133,14 @@ public class Stage01After : MonoBehaviour
         isTypingRuning = true;
         playerText.text = "";
         bossText.text = "";
+        textAmount = 0;
 
         foreach (char letter in s.ToCharArray())
         {
+            if (textAmount == 0 || textAmount % 3 == 0)
+            {
+                SoundManager.instance.Key_Sound();
+            }
             if (player)
             {
                 playerText.text += letter;
@@ -143,6 +151,7 @@ public class Stage01After : MonoBehaviour
                 bossText.text += letter;
                 yield return new WaitForSeconds(0.02f);
             }
+            textAmount++;
         }
 
         isTypingRuning = false;

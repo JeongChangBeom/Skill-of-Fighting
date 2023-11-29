@@ -18,6 +18,9 @@ public class ImmortalStatus : MonoBehaviour
 
     private bool immortaldie = false;
 
+    private bool leftarmDestroy = false;
+    private bool rightarmDestroy = false;
+
     CameraController cameracontroller;
 
     private void Start()
@@ -51,6 +54,11 @@ public class ImmortalStatus : MonoBehaviour
         if(leftarmHP <= 0)
         {
             leftArm.GetComponent<Animator>().SetBool("isDestroy", true);
+            if (!leftarmDestroy)
+            {
+                leftarmDestroy = true;
+                SoundManager.instance.DestroyArm_Sound();
+            }
             Invoke("LeftArmDestroy", 2.0f);
         }
         else
@@ -61,6 +69,11 @@ public class ImmortalStatus : MonoBehaviour
         if (rightarmHP <= 0)
         {
             rightArm.GetComponent<Animator>().SetBool("isDestroy", true);
+            if (!rightarmDestroy)
+            {
+                rightarmDestroy = true;
+                SoundManager.instance.DestroyArm_Sound();
+            }
             Invoke("RightArmDestroy", 2.0f);
         }
         else
