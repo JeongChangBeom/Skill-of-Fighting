@@ -170,6 +170,7 @@ public class BossGunner : MonoBehaviour
         skid.GetComponent<Animator>().SetBool("isSkid", true);
         Instantiate(bullet_parry, bulletGun.transform.position, bulletGun.transform.rotation);
         SoundManager.instance.SnipeShoot_Sound();
+        SoundManager.instance.Skid_Sound();
         snipingON = true;
 
         yield return new WaitForSeconds(0.3f);
@@ -179,7 +180,10 @@ public class BossGunner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         skid.GetComponent<Animator>().SetBool("isSkid", false);
         skid.SetActive(false);
-        StartCoroutine(Pattern_BulletRain());
+        if(GameObject.FindWithTag("boss").GetComponent<BossStatus>().bossHP > 0)
+        {
+            StartCoroutine(Pattern_BulletRain());
+        }
     }
 
 
@@ -294,6 +298,7 @@ public class BossGunner : MonoBehaviour
     public void BulletRainOn()
     {
         bulletRainON = true;
+        SoundManager.instance.GunnerJump_Sound();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -309,5 +314,4 @@ public class BossGunner : MonoBehaviour
             anim.SetBool("isJump", false);
         }
     }
-
 }

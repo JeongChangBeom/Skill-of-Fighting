@@ -34,6 +34,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource ParryArrow_Audio;
     public AudioClip ParryArrow;
 
+    public AudioSource HunterWalk_Audio;
+    public AudioClip HunterWalk;
+
     public AudioSource StageExclamationMarkOn_Audio;
     public AudioClip StageExclamationMarkOn;
 
@@ -48,6 +51,12 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource Land_Audio;
     public AudioClip Land;
+
+    public AudioSource GunnerJump_Audio;
+    public AudioClip GunnerJump;
+
+    public AudioSource Skid_Audio;
+    public AudioClip Skid;
 
     public AudioSource RandomShoot_Audio;
     public AudioClip RandomShoot;
@@ -196,6 +205,12 @@ public class SoundManager : MonoBehaviour
         ParryArrow_Audio.PlayOneShot(ParryArrow);
     }
 
+    public void HunterWalk_Sound()
+    {
+        HunterWalk_Audio.PlayOneShot(HunterWalk);
+    }
+
+
     public void StageExclamationMarkOn_Sound()
     {
         StageExclamationMarkOn_Audio.PlayOneShot(StageExclamationMarkOn);
@@ -219,6 +234,16 @@ public class SoundManager : MonoBehaviour
     public void Land_Sound()
     {
         Land_Audio.PlayOneShot(Land);
+    }
+
+    public void GunnerJump_Sound()
+    {
+        GunnerJump_Audio.PlayOneShot(GunnerJump);
+    }
+
+    public void Skid_Sound()
+    {
+        Skid_Audio.PlayOneShot(Skid);
     }
 
     public void RandomShoot_Sound()

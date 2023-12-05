@@ -191,6 +191,11 @@ public class BossHunter : MonoBehaviour
 
     }
 
+    public void MoveSoundEvent()
+    {
+        SoundManager.instance.HunterWalk_Sound();
+    }
+
     private void PatternStop()
     {
         patternON = false;

@@ -65,6 +65,8 @@ MonoBehaviour:
   Arrow: {fileID: 8300000, guid: 9682094f3543044438d8d8ecb0cb3005, type: 3}
   ParryArrow_Audio: {fileID: 0}
   ParryArrow: {fileID: 8300000, guid: 33d6c623332337c42a7b3e4a9f12d92b, type: 3}
+  HunterWalk_Audio: {fileID: 0}
+  HunterWalk: {fileID: 8300000, guid: 9b030b951dd09234598a2bdcfcd8023d, type: 3}
   StageExclamationMarkOn_Audio: {fileID: 0}
   StageExclamationMarkOn: {fileID: 8300000, guid: ce223074afe43164d87dabfbcf30c9b6, type: 3}
   Smoke_Audio: {fileID: 0}
@@ -113,7 +115,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
