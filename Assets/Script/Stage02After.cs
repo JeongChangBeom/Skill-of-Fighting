@@ -126,6 +126,11 @@ public class Stage02After : MonoBehaviour
         {
             guardian.transform.position = Vector3.MoveTowards(guardian.transform.position, new Vector3(40f, guardian.transform.position.y, guardian.transform.position.z), 10f * Time.deltaTime);
         }
+
+        if(guardian.transform.position.x > 26)
+        {
+            guardian.GetComponent<Animator>().SetBool("isMove", false);
+        }
     }
 
     IEnumerator TypingText(string s)

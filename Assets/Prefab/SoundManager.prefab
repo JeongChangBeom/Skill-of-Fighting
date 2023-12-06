@@ -77,6 +77,10 @@ MonoBehaviour:
   SnipeShoot: {fileID: 8300000, guid: fbb9e9852cec6a84d9fa9304f7111884, type: 3}
   Land_Audio: {fileID: 0}
   Land: {fileID: 8300000, guid: c96ae74d86105574ab4daca65ca7741f, type: 3}
+  GunnerJump_Audio: {fileID: 0}
+  GunnerJump: {fileID: 8300000, guid: df7c268167d2ca54daa8b89cc9290d9d, type: 3}
+  Skid_Audio: {fileID: 0}
+  Skid: {fileID: 8300000, guid: e11a66fc9f525c04f87ccb3818db8514, type: 3}
   RandomShoot_Audio: {fileID: 0}
   RandomShoot: {fileID: 8300000, guid: 11a597d7233cb2943bc6cb1d58db141c, type: 3}
   Shoot_Audio: {fileID: 0}
@@ -95,6 +99,12 @@ MonoBehaviour:
   Punch02: {fileID: 8300000, guid: 2aab15db9ea0f8e42bb669260c3a6685, type: 3}
   DestroyArm_Audio: {fileID: 0}
   DestroyArm: {fileID: 8300000, guid: 4bc31901a966d844292c794da8fde53c, type: 3}
+  ImmortalDamage_Audio: {fileID: 0}
+  ImmortalDamage: {fileID: 8300000, guid: 17eb279b92890ea4e95f63e1b14261ac, type: 3}
+  ImmortalDie1_Audio: {fileID: 0}
+  ImmortalDie1: {fileID: 8300000, guid: 5f9ae7f12b8ddb845b4f0025bd59cef7, type: 3}
+  ImmortalDie2_Audio: {fileID: 0}
+  ImmortalDie2: {fileID: 8300000, guid: 7226ebd0ff031c345805a2f0fa72f2e3, type: 3}
   RaserBefore_Audio: {fileID: 0}
   RaserBefore: {fileID: 8300000, guid: 164fc472d243c6641a8902b379215b49, type: 3}
   Raser_Audio: {fileID: 0}
@@ -103,6 +113,14 @@ MonoBehaviour:
   MissileBefore: {fileID: 8300000, guid: fa1446740558d0b42a8a671f9a81e8fb, type: 3}
   Missile_Audio: {fileID: 0}
   Missile: {fileID: 8300000, guid: 4ab51ab8fa40c77489dd28706813e417, type: 3}
+  GuardianBackStep_Audio: {fileID: 0}
+  GuardianBackStep: {fileID: 8300000, guid: ea521bb9076bb24418b0790796a6ad9f, type: 3}
+  GuardianJump_Audio: {fileID: 0}
+  GuardianJump: {fileID: 8300000, guid: 21fd5a4a75de1e44abea955e3be071f0, type: 3}
+  GuardianParry_Audio: {fileID: 0}
+  GuardianParry: {fileID: 8300000, guid: b4dfc7681f38808409f9800558615321, type: 3}
+  GuardianMove_Audio: {fileID: 0}
+  GuardianMove: {fileID: 8300000, guid: 0a221c56aa5cb6b47822a3ef3558516d, type: 3}
 --- !u!82 &466754599207576559
 AudioSource:
   m_ObjectHideFlags: 0
@@ -112,7 +130,7 @@ AudioSource:
   m_GameObject: {fileID: 3059242460730563447}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7bd5408975ffc35439297053f1cd95c4, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.1

@@ -85,6 +85,15 @@ public class SoundManager : MonoBehaviour
     public AudioSource DestroyArm_Audio;
     public AudioClip DestroyArm;
 
+    public AudioSource ImmortalDamage_Audio;
+    public AudioClip ImmortalDamage;
+
+    public AudioSource ImmortalDie1_Audio;
+    public AudioClip ImmortalDie1;
+
+    public AudioSource ImmortalDie2_Audio;
+    public AudioClip ImmortalDie2;
+
     public AudioSource RaserBefore_Audio;
     public AudioClip RaserBefore;
 
@@ -97,20 +106,20 @@ public class SoundManager : MonoBehaviour
     public AudioSource Missile_Audio;
     public AudioClip Missile;
 
+    public AudioSource GuardianBackStep_Audio;
+    public AudioClip GuardianBackStep;
 
+    public AudioSource GuardianJump_Audio;
+    public AudioClip GuardianJump;
 
+    public AudioSource GuardianParry_Audio;
+    public AudioClip GuardianParry;
 
+    public AudioSource GuardianMove_Audio;
+    public AudioClip GuardianMove;
 
-
-
-
-
-
-
-
-
-
-
+    public static float BGMvolume = 1.0f;
+    public static float SFXvolume = 1.0f;
     public static SoundManager instance
     {
         get
@@ -137,7 +146,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        if(SceneManager.GetActiveScene().name == "Stage01")
+        if (SceneManager.GetActiveScene().name == "Stage01")
         {
             BGM.loop = true;
             BGM.clip = Stage01BGM;
@@ -280,10 +289,15 @@ public class SoundManager : MonoBehaviour
     {
         Punch02_Audio.PlayOneShot(Punch02);
     }
-    
+
     public void DestroyArm_Sound()
     {
         DestroyArm_Audio.PlayOneShot(DestroyArm);
+    }
+
+    public void ImmortalDamage_Sound()
+    {
+        ImmortalDamage_Audio.PlayOneShot(ImmortalDamage);
     }
 
     public void RaserBefore_Sound()
@@ -300,7 +314,7 @@ public class SoundManager : MonoBehaviour
     {
         MissileBefore_Audio.PlayOneShot(MissileBefore);
     }
-    
+
     public void Missile_Sound()
     {
         Missile_Audio.PlayOneShot(Missile);
@@ -309,5 +323,35 @@ public class SoundManager : MonoBehaviour
     public void BombDrop_Sound()
     {
         BombDrop_Audio.PlayOneShot(BombDrop);
+    }
+
+    public void GuardianBackStep_Sound()
+    {
+        GuardianBackStep_Audio.PlayOneShot(GuardianBackStep);
+    }
+
+    public void GuardianJump_Sound()
+    {
+        GuardianJump_Audio.PlayOneShot(GuardianJump);
+    }
+
+    public void GuardianParry_Sound()
+    {
+        GuardianParry_Audio.PlayOneShot(GuardianParry);
+    }
+
+    public void GuardianMove_Sound()
+    {
+        GuardianMove_Audio.PlayOneShot(GuardianMove);
+    }
+
+    public void ImmortalDie1_Sound()
+    {
+        ImmortalDie1_Audio.PlayOneShot(ImmortalDie1);
+    }
+
+    public void ImmortalDie2_Sound()
+    {
+        ImmortalDie2_Audio.PlayOneShot(ImmortalDie2);
     }
 }

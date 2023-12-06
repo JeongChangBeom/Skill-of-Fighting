@@ -167,6 +167,7 @@ public class Stage03Before : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         guardian.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 32f, ForceMode2D.Impulse);
         guardian.GetComponent<Animator>().SetBool("isJump", true);
+        SoundManager.instance.GuardianJump_Sound();
 
         yield return new WaitForSeconds(0.5f);
         ground1.GetComponent<BoxCollider2D>().enabled = true;

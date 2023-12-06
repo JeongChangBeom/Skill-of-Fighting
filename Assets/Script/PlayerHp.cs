@@ -30,7 +30,6 @@ public class PlayerHp : MonoBehaviour
         {
             GameObject.Find("Canvas").transform.Find("BossHP").gameObject.SetActive(false);
         }
-        GameObject.Find("Canvas").transform.Find("PauseText").gameObject.SetActive(false);
         GameObject.Find("Canvas").transform.Find("BossName").gameObject.SetActive(false);
 
         GameObject.Find("Map").transform.Find("Die").gameObject.SetActive(true);

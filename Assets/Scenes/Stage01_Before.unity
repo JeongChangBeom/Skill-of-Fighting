@@ -1789,6 +1789,11 @@ Transform:
   - {fileID: 193134607}
   m_Father: {fileID: 1485814489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1199577586 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3753561374874862610, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1220865053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,6 +2541,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439442481}
   m_CullTransparentMesh: 1
+--- !u!82 &1455072408 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9688620573259061, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072409 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 938099151424131836, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072410 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8111977329654965330, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072411 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3036459869584250140, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072412 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8340366866097176077, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072413 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1454438703309898494, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072414 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7834906262706596151, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072415 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1513740741622789336, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072416 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3859800770958139469, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1455072417 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 542819439302711274, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 8187349694842910500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &1460121524 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3470398822666061488, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
@@ -2714,7 +2769,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 652456745880860996, guid: a40356fdb43ee7f44bb690d657b9623f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1321211170}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7384688414590446175, guid: a40356fdb43ee7f44bb690d657b9623f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981778207}
   m_SourcePrefab: {fileID: 100100000, guid: a40356fdb43ee7f44bb690d657b9623f, type: 3}
 --- !u!1 &1554166191
 GameObject:
@@ -3479,6 +3537,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 652456745880860996, guid: a40356fdb43ee7f44bb690d657b9623f, type: 3}
   m_PrefabInstance: {fileID: 1545460038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1981778207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981778198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fe796d554fe194e95bee841c9e3a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {x: 0, y: 0, z: 0}
+  dirPos: {x: 0, y: 0, z: 0}
+  isJump: 1
+  moveSpeed: 5
+  MaxmoveSpeed: 10
+  jumpPower: 20
+  backstepPower: 100
+  parryCooldown: 3
+  backstepCooldown: 3
+  dir: 1
+  playerAttack_Prefab: {fileID: 0}
+  parryEff: {fileID: 0}
 --- !u!1 &1983157688
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3800,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8187349694842910502}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: Skid_Audio
+      value: 
+      objectReference: {fileID: 1455072415}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: SnipeShoot
       value: 
       objectReference: {fileID: 8300000, guid: fbb9e9852cec6a84d9fa9304f7111884, type: 3}
@@ -3766,6 +3852,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1129651815}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: BombDrop_Audio
+      value: 
+      objectReference: {fileID: 1455072414}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: SnipeLoad_Audio
       value: 
       objectReference: {fileID: 8187349694842910504}
@@ -3773,6 +3863,14 @@ PrefabInstance:
       propertyPath: DestroyArm_Audio
       value: 
       objectReference: {fileID: 1129651814}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GunnerJump_Audio
+      value: 
+      objectReference: {fileID: 1455072416}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: HunterWalk_Audio
+      value: 
+      objectReference: {fileID: 1455072417}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: ParryArrow_Audio
       value: 
@@ -3794,13 +3892,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 101468778}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianJump_Audio
+      value: 
+      objectReference: {fileID: 1455072409}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianMove_Audio
+      value: 
+      objectReference: {fileID: 1199577586}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: ImmortalDie1_Audio
+      value: 
+      objectReference: {fileID: 1455072412}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: ImmortalDie2_Audio
+      value: 
+      objectReference: {fileID: 1455072411}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: ButtonMouseOn_Audio
       value: 
       objectReference: {fileID: 922820310}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianParry_Audio
+      value: 
+      objectReference: {fileID: 1455072408}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: MissileBefore_Audio
       value: 
       objectReference: {fileID: 1129651811}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: ImmortalDamage_Audio
+      value: 
+      objectReference: {fileID: 1455072413}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianBackStep_Audio
+      value: 
+      objectReference: {fileID: 1455072410}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: ExclamationMarkOn_Audio
       value: 

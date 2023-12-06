@@ -172,6 +172,7 @@ public class Stage02Before : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         guardianMove = true;
         guardian.GetComponent<Animator>().SetBool("isBackStep", true);
+        SoundManager.instance.GuardianBackStep_Sound();
 
         yield return new WaitForSeconds(0.1f);
         guardianMove = false;

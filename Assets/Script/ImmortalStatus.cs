@@ -115,6 +115,8 @@ public class ImmortalStatus : MonoBehaviour
         GameObject.Find("Player").gameObject.layer = 8;
 
         cameracontroller.StartCoroutine(cameracontroller.Shake());
+        SoundManager.instance.ImmortalDie1_Sound();
+        SoundManager.instance.BGM.Stop();
 
         yield return new WaitForSeconds(0.5f);
         cameracontroller.StartCoroutine(cameracontroller.Shake());

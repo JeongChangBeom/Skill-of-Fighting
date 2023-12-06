@@ -1258,6 +1258,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615804331}
   m_CullTransparentMesh: 1
+--- !u!82 &628662504 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3753561374874862610, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662505 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9688620573259061, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662506 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 938099151424131836, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662507 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8111977329654965330, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662508 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3036459869584250140, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662509 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8340366866097176077, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662510 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1454438703309898494, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662511 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7834906262706596151, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662512 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1513740741622789336, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662513 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3859800770958139469, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &628662514 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 542819439302711274, guid: c249db3552e1f1d47b2d569de5a9f38d, type: 3}
+  m_PrefabInstance: {fileID: 2026385772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &653949424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2095,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2026385785}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: Skid_Audio
+      value: 
+      objectReference: {fileID: 628662512}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: Arrow_Audio
       value: 
       objectReference: {fileID: 2026385791}
@@ -2084,6 +2143,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2026385778}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: BombDrop_Audio
+      value: 
+      objectReference: {fileID: 628662511}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: SnipeLoad_Audio
       value: 
       objectReference: {fileID: 2026385787}
@@ -2091,6 +2154,14 @@ PrefabInstance:
       propertyPath: DestroyArm_Audio
       value: 
       objectReference: {fileID: 2026385777}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GunnerJump_Audio
+      value: 
+      objectReference: {fileID: 628662513}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: HunterWalk_Audio
+      value: 
+      objectReference: {fileID: 628662514}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: ParryArrow_Audio
       value: 
@@ -2112,13 +2183,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2026385795}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianJump_Audio
+      value: 
+      objectReference: {fileID: 628662506}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianMove_Audio
+      value: 
+      objectReference: {fileID: 628662504}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: ImmortalDie1_Audio
+      value: 
+      objectReference: {fileID: 628662509}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: ImmortalDie2_Audio
+      value: 
+      objectReference: {fileID: 628662508}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: ButtonMouseOn_Audio
       value: 
       objectReference: {fileID: 2026385797}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianParry_Audio
+      value: 
+      objectReference: {fileID: 628662505}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: MissileBefore_Audio
       value: 
       objectReference: {fileID: 2026385774}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: ImmortalDamage_Audio
+      value: 
+      objectReference: {fileID: 628662510}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: GuardianBackStep_Audio
+      value: 
+      objectReference: {fileID: 628662507}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: ExclamationMarkOn_Audio
       value: 

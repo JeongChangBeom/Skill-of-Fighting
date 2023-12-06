@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private PlayerHp playerHp;
     private BossStatus bossStatus;
 
-    private GameObject PauseText;
+    private GameObject Option;
     public bool isPause = false;
 
     public bool GameStart;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         parry_text = GameObject.Find("Canvas").transform.Find("Parry_Image/Parry_CoolDown").GetComponent<Text>();
         playerHp = GameObject.FindWithTag("Player").GetComponent<PlayerHp>();
         bossStatus = GameObject.FindWithTag("boss").GetComponent<BossStatus>();
-        PauseText = GameObject.Find("Canvas").transform.Find("PauseText").gameObject;
+        Option = GameObject.Find("Canvas").transform.Find("Option").gameObject;
 
         playerHp.isDead = false;
 
@@ -123,13 +123,13 @@ public class GameManager : MonoBehaviour
         {
             isPause = true;
             Time.timeScale = 0;
-            PauseText.SetActive(true);
+            Option.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isPause)
         {
             isPause = false;
             Time.timeScale = 1;
-            PauseText.SetActive(false);
+            Option.SetActive(false);
         }
     }
 

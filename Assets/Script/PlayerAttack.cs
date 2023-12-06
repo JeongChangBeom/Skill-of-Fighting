@@ -99,6 +99,7 @@ public class PlayerAttack : MonoBehaviour
                     if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP > 0)
                     {
                         GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP--;
+                        SoundManager.instance.ImmortalDamage_Sound();
                     }
                 }
 
@@ -107,6 +108,7 @@ public class PlayerAttack : MonoBehaviour
                     if (GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP > 0)
                     {
                         GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP--;
+                        SoundManager.instance.ImmortalDamage_Sound();
                     }
                 }
 
@@ -115,6 +117,7 @@ public class PlayerAttack : MonoBehaviour
                     if(GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().leftarmHP <= 0 && GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().rightarmHP <= 0)
                     {
                         GameObject.FindWithTag("boss").GetComponent<ImmortalStatus>().mainHP--;
+                        SoundManager.instance.ImmortalDamage_Sound();
                     }
                 }
             }

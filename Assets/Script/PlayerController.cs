@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isJump)
             {
+                SoundManager.instance.GuardianJump_Sound();
                 anim.SetBool("isJump", true);
                 isJump = true;
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -159,6 +160,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S) && backstepOn && !parryattack.parryattackOn)
         {
+            SoundManager.instance.GuardianBackStep_Sound();
             anim.SetBool("isBackStep", true);
             this.gameObject.layer = 8;
             rb.velocity = Vector3.zero;
@@ -268,5 +270,15 @@ public class PlayerController : MonoBehaviour
         {
             isJump = false;
         }
+    }
+
+    public void GuardianMoveSoundEvent()
+    {
+        SoundManager.instance.GuardianMove_Sound();
+    }
+
+    public void GuardianParrySoundEvent()
+    {
+        SoundManager.instance.GuardianParry_Sound();
     }
 }
