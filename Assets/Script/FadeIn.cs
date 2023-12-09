@@ -28,13 +28,13 @@ public class FadeIn : MonoBehaviour
 
     public IEnumerator FadeOutStart()
     {
-        for (float f = 0f; f < 1; f += 0.009f)
+        for (float f = 0f; f < 1; f += 0.027f)
         {
             Color c = FadePannel.GetComponent<Image>().color;
             c.a = f;
             FadePannel.GetComponent<Image>().color = c;
             yield return null;
         }
-        yield return new WaitForSeconds(0.33f);
+        yield return new WaitForSeconds(0.11f);
     }
 }

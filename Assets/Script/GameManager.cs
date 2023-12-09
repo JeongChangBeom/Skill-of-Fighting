@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerController.backstepCooldown >= 3.0f)
         {
-            backStep.color = Color.blue;
+            backStep.color = Color.white;
             backStep_text.GetComponent<Text>().text = "";
         }
         else
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerController.parryCooldown >= 3.0f)
         {
-            parry.color = Color.green;
+            parry.color = Color.white;
             parry_text.GetComponent<Text>().text = "";
         }
         else

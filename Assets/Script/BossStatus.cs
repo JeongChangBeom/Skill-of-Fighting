@@ -9,13 +9,6 @@ public class BossStatus : MonoBehaviour
 
     public float bossHP = 3;
 
-    private GameObject clearText;
-
-
-    private void Start()
-    {
-        clearText = GameObject.Find("Canvas").transform.Find("ClearText").gameObject;
-    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -33,7 +26,7 @@ public class BossStatus : MonoBehaviour
 
     public void BossDie()
     {
-        clearText.SetActive(true);
+        GameObject.FindWithTag("boss").GetComponent<Animator>().SetBool("isDie", true);
         GameObject.Find("Player").gameObject.layer = 8;
     }
     

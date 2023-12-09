@@ -2054,6 +2054,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 705157456}
     - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
+      propertyPath: Stage02BGM
+      value: 
+      objectReference: {fileID: 8300000, guid: 27e202f2757babf47b708f5521f3d0a2, type: 3}
+    - target: {fileID: 5590241093264164033, guid: c2c23144598cf1344bfcf0fbaf61d04b, type: 3}
       propertyPath: Arrow_Audio
       value: 
       objectReference: {fileID: 780597248}
@@ -3466,7 +3470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a19701abb1b12084481e67747b957b7e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e457c414b39d13641b3f969a552398ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3616,7 +3620,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1507865845}
   - component: {fileID: 1507865844}
-  - component: {fileID: 1507865843}
   - component: {fileID: 1507865842}
   - component: {fileID: 1507865840}
   m_Layer: 10
@@ -3689,7 +3692,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    oldSize: {x: 12.5, y: 12.5}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3739,27 +3742,6 @@ PolygonCollider2D:
       - {x: -2.8125, y: 0.625}
       - {x: -2.75, y: 0.625}
   m_UseDelaunayMesh: 0
---- !u!95 &1507865843
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507865839}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 075d4bed764c3564ab371a8744b83000, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1507865844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3801,7 +3783,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 9
-  m_Sprite: {fileID: 21300000, guid: 08a211f2406828546888b4316cee3ffc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e457c414b39d13641b3f969a552398ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

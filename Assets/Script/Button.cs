@@ -7,7 +7,6 @@ public class Button : MonoBehaviour
 {
     public void MainMenu_Start()
     {
-        //SceneManager.LoadScene("Scenario");
         SoundManager.instance.SceneChange_Sound();
         GameObject.Find("Canvas").transform.Find("FadePanel").gameObject.SetActive(true);
         GameObject.Find("Canvas").transform.Find("FadePanel").GetComponent<FadeIn>().StartCoroutine(GameObject.Find("Canvas").transform.Find("FadePanel").GetComponent<FadeIn>().FadeOutStart());
@@ -16,7 +15,7 @@ public class Button : MonoBehaviour
 
     private void MainMenu_GameStart()
     {
-        SceneManager.LoadScene("Stage01_Before");
+        SceneManager.LoadScene("Scenario");
     }
 
     public void MainMenu_Exit()
